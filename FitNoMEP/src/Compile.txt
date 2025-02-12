@@ -1,0 +1,1 @@
+ifort -O3 -qopenmp -o fitPotential.x CH3OH_v7.f90
