@@ -1,0 +1,120 @@
+
+ Working directory              : /tmp/asmola/molpro.saqGsvBeaG/
+ Global scratch directory       : /tmp/asmola/molpro.saqGsvBeaG/
+ Wavefunction directory         : /home/asmola/wfu/
+ Main file repository           : /tmp/asmola/molpro.saqGsvBeaG/
+
+ id        : uclcc
+
+ Nodes                        nprocs
+ vincent.theory.phys.ucl.ac.uk    1
+ GA implementation: MPI file
+ GA implementation (serial work in mppx): MPI file
+
+ Using customized tuning parameters: mindgm=1; mindgv=20; mindgc=4; mindgr=1; noblas=0; minvec=7
+ default implementation of scratch files=df  
+
+
+ Variables initialized (1015), CPU time= 0.00 sec
+ ***,Methanol Ground State Energy with CCSD(T)-F12 and cc-pVTZ-F12
+ memory,500,m;
+ 
+ symmetry,nosym
+ geometry={angstrom
+ c
+ o , 1, rco
+ h , 2, roh, 1, acoh
+ h1, 1, rch1, 2, aoch1, 3, ahh1
+ h2, 1, rch2, 2, aoch2, 3, ahh2
+ h3, 1, rch3, 2, aoch3, 3, ahh3
+ }
+ 
+                                                ! Specify the initial values of the internal coordinates (in Angstroms and degrees)
+ re1= 1.4296
+ re2= 0.95887
+ re3= 1.092294
+ re4= 1.092294
+ re5= 1.092294
+ ae1= 107.9812
+ ae2= 110.6646
+ ae3= 110.6646
+ ae4= 110.6646
+ ahh1=60.00
+ ahh2=180.00
+ ahh3=300.00
+ 
+ rco= 1.4296
+ roh= 0.95887
+ rch1= 1.092294
+ rch2= 1.092294
+ rch3= 1.092294
+ acoh= 107.9812
+ aoch1= 110.6646
+ aoch2= 110.6646
+ aoch3= 110.6646
+ Sa = 0.00
+ Sb = 0.00
+ tau = 0
+ ahh1 = tau+1.0/3.0*sqrt(2.0)*Sb
+ ahh2 = 120.0+tau-1.0/6.0*sqrt(2.0)*Sb-1.0/6.0*sqrt(6.0)*Sa
+ ahh3 = 240.0+tau+1.0/6.0*sqrt(6.0)*Sa-1.0/6.0*sqrt(2.0)*Sb
+ 
+                                                                                 ! Use the cc-pVTZ-F12 basis set
+ basis=cc-pVTZ-F12
+ 
+ hf
+ 
+                                                                                 ! Loop over tau values
+ do i = 0, 60, 5
+     tau = i
+     ahh1 = tau+1.0/3.0*sqrt(2.0)*Sb
+     ahh2 = 120.0+tau-1.0/6.0*sqrt(2.0)*Sb-1.0/6.0*sqrt(6.0)*Sa
+     ahh3 = 240.0+tau-1.0/6.0*sqrt(2.0)*Sb-1.0/6.0*sqrt(6.0)*Sa
+ 
+     geometry={angstrom
+     c
+     o , 1, rco
+     h , 2, roh, 1, acoh
+     h1, 1, rch1, 2, aoch1, 3, ahh1
+     h2, 1, rch2, 2, aoch2, 3, ahh2
+     h3, 1, rch3, 2, aoch3, 3, ahh3
+     }
+ 
+     hf
+     {optg,procedure=runmp2,savexyz=CH3OH_MEP_MP2.xyz;
+     active,rco,roh,rch1,rch2,rch3,acoh,aoch1,aoch2,aoch3;
+     save,optimized_geom=tau_${tau}_geometry;
+     }
+     runmp2={hf;mp2}
+ 
+     print, "TAU=${tau}";
+     print, geom;
+ 
+ enddo
+ 
+ Commands initialized (818), CPU time= 0.01 sec, 672 directives.
+ Default parameters read. Elapsed time= 0.05 sec
+
+ Checking input...
+
+ Unknown directive TAU for command OPTG
+
+ Unknown directive _GEOMETRY for command OPTG
+
+ Unknown command or directive TAU
+
+ Unknown command or directive "
+
+ Ambiguous input: ENDDO001
+
+ This may be a directive or a global command
+ Please enclose command and associated directives by curly brackets:
+ {MP2;...}
+
+    5 input errors found
+
+ ? Error
+ ? Input errors!
+ ? The problem occurs in check_input
+
+ GLOBAL ERROR fehler on processor   0                                         

@@ -1,0 +1,3 @@
+xcfour > .out
+then to clear log files
+xclean

@@ -1,0 +1,146 @@
+
+ Working directory              : /tmp/asmola/molpro.ckYVqRBw39/
+ Global scratch directory       : /tmp/asmola/molpro.ckYVqRBw39/
+ Wavefunction directory         : /home/asmola/wfu/
+ Main file repository           : /tmp/asmola/molpro.ckYVqRBw39/
+
+ id        : uclcc
+
+ Nodes                        nprocs
+ vincent.theory.phys.ucl.ac.uk    1
+ GA implementation: MPI file
+ GA implementation (serial work in mppx): MPI file
+
+ Using customized tuning parameters: mindgm=1; mindgv=20; mindgc=4; mindgr=1; noblas=0; minvec=7
+ default implementation of scratch files=df  
+
+
+ Variables initialized (1015), CPU time= 0.01 sec
+ ***,Methanol Ground State Energy with CCSD(T)-F12 and cc-pVTZ-F12
+ memory,500,m;
+ 
+ geometry={angstrom
+ c
+ o , 1, rco
+ h , 2, rch0, 1, acoh
+ h1, 1, rch1, 2, aoch1  3  ahh1
+ h2, 1, rch2, 2, aoch2, 3, ahh2
+ h3, 1, rch3, 2, aoch3, 3, ahh3
+ }
+ 
+                                                ! Specify the initial values of the internal coordinates (in Angstroms and degrees)
+ re1= 1.4296
+ re2= 0.95887
+ re3= 1.092294
+ re4= 1.092294
+ re5= 1.092294
+ ae1= 107.9812
+ ae2= 110.6646
+ ae3= 110.6646
+ ae4= 110.6646
+ ahh1=60.00
+ ahh2=180.00
+ ahh3=300.00
+ 
+                                                                                 ! Use the cc-pVTZ-F12 basis set
+ basis=cc-pVTZ-F12
+ 
+                                                                                 ! Use explicitly correlated F12 methods
+                                                                            ! First, MP2-F12 (useful for initial electronic energy)
+ {mp2-f12}
+ 
+                                                                        ! If desired, perform CCSD(T)-F12 for more accurate results
+ {ccsd(t)-f12}
+ 
+                                                                                 ! Output the energy
+ 
+ Commands initialized (818), CPU time= 0.00 sec, 672 directives.
+ Default parameters read. Elapsed time= 0.06 sec
+
+ Checking input...
+ Passed
+1
+
+
+                                         ***  PROGRAM SYSTEM MOLPRO  ***
+                                       Copyright, TTI GmbH Stuttgart, 2015
+                                    Version 2022.1 linked Mar  3 2022 23:20:00
+
+
+ **********************************************************************************************************************************
+ LABEL *   Methanol Ground State Energy with CCSD(T)-F12 and cc-pVTZ-F12                 
+  (8 PROC) 64 bit serial version                                                         DATE: 27-Sep-24          TIME: 10:15:26  
+ **********************************************************************************************************************************
+
+ SHA1:             31073afc4d8441e10870424e0d77336a33bc4286
+ **********************************************************************************************************************************
+
+ Memory per process:       500 MW
+ Total memory per node:    500 MW
+
+ GA preallocation disabled
+ GA check disabled
+
+ Variable memory set to 500.0 MW
+
+ SETTING RE1            =         1.42960000                                  
+ SETTING RE2            =         0.95887000                                  
+ SETTING RE3            =         1.09229400                                  
+ SETTING RE4            =         1.09229400                                  
+ SETTING RE5            =         1.09229400                                  
+ SETTING AE1            =       107.98120000                                  
+ SETTING AE2            =       110.66460000                                  
+ SETTING AE3            =       110.66460000                                  
+ SETTING AE4            =       110.66460000                                  
+ SETTING AHH1           =        60.00000000                                  
+ SETTING AHH2           =       180.00000000                                  
+ SETTING AHH3           =       300.00000000                                  
+ SETTING BASIS          =    CC-PVTZ-F12
+
+
+ Recomputing integrals since basis changed
+
+
+ Using spherical harmonics
+
+ ? Possible error in Z matrix
+ Line                    2  connection                    1  expr=RCO
+ ? Apparently depends on a variable, but not one that is yet defined
+
+ Z matrix     Current Z-matrix
+ ========
+
+ Records:   700.0   700.0
+ Maximum, total, and current numbers of geometry points 100   0   0
+ Orientation using atomic masses  
+ Rotational constants:       0.0000000      0.0000000      0.0000000 GHz  (calculated with average atomic masses)
+ Unique atoms/degeneracy:
+
+   #     Tag     N1 Distance  N2 Angle     N3 Angle        J
+   Grp   Chg     Distance     Angle        Angle                  x            y            z
+
+   1  1   C    
+      1  6.0    0.0000000    0.0000000    0.0000000              0.0000000    0.0000000    0.0000000
+   2  2   O       1 RCO     
+      2  8.0    0.0000000    0.0000000    0.0000000              0.0000000    0.0000000    0.0000000
+   3  3   H       2 RCH0       1 ACOH    
+      3  1.0    0.0000000    0.0000000    0.0000000              0.0000000    0.0000000    0.0000000
+   4  4   H1      1 RCH1       2 AOCH1      3 AHH1         0
+      3  1.0    0.0000000    0.0000000   60.0000000              0.0000000    0.0000000    0.0000000
+   5  5   H2      1 RCH2       2 AOCH2      3 AHH2         0
+      3  1.0    0.0000000    0.0000000  180.0000000              0.0000000    0.0000000    0.0000000
+   6  6   H3      1 RCH3       2 AOCH3      3 AHH3         0
+      3  1.0    0.0000000    0.0000000  300.0000000              0.0000000    0.0000000    0.0000000
+
+ Variables on which Z-matrix depends:
+ Name:                                                                                                                                   
+ Value:         0.0000000       0.0000000       0.0000000       0.0000000       0.0000000       0.0000000       0.0000000       0.0000000  
+ Name:                                                               AHH1                                            AHH2                
+ Value:         0.0000000       0.0000000       0.0000000      60.0000000 D     0.0000000       0.0000000     180.0000000 D     0.0000000  
+ Name:                               AHH3
+ Value:         0.0000000     300.0000000 D
+ ? Error
+ ? Error in Z matrix
+ ? The problem occurs in zmatrix.f:zmat_evaluate
+
+ GLOBAL ERROR fehler on processor   0                                         

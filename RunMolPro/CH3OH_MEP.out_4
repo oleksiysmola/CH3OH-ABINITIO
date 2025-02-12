@@ -1,0 +1,240 @@
+
+ Working directory              : /tmp/asmola/molpro.LJeuwXpVFe/
+ Global scratch directory       : /tmp/asmola/molpro.LJeuwXpVFe/
+ Wavefunction directory         : /home/asmola/wfu/
+ Main file repository           : /tmp/asmola/molpro.LJeuwXpVFe/
+
+ id        : uclcc
+
+ Nodes                        nprocs
+ vincent.theory.phys.ucl.ac.uk    1
+ GA implementation: MPI file
+ GA implementation (serial work in mppx): MPI file
+
+ Using customized tuning parameters: mindgm=1; mindgv=20; mindgc=4; mindgr=1; noblas=0; minvec=7
+ default implementation of scratch files=df  
+
+
+ Variables initialized (1015), CPU time= 0.00 sec
+ ***,Methanol Ground State Energy with CCSD(T)-F12 and cc-pVTZ-F12
+ memory,500,m;
+ 
+ geometry={angstrom
+ c
+ o , 1, rco
+ h , 2, roh, 1, acoh
+ h1, 1, rch1, 2, aoch1  3  ahh1
+ h2, 1, rch2, 2, aoch2, 3, ahh2
+ h3, 1, rch3, 2, aoch3, 3, ahh3
+ }
+ 
+                                                ! Specify the initial values of the internal coordinates (in Angstroms and degrees)
+ re1= 1.4296
+ re2= 0.95887
+ re3= 1.092294
+ re4= 1.092294
+ re5= 1.092294
+ ae1= 107.9812
+ ae2= 110.6646
+ ae3= 110.6646
+ ae4= 110.6646
+ ahh1=60.00
+ ahh2=180.00
+ ahh3=300.00
+ rco= 1.4296
+ roh= 0.95887
+ rch1= 1.092294
+ rch2= 1.092294
+ rch3= 1.092294
+ acoh= 107.9812
+ aoch1= 110.6646
+ aoch2= 110.6646
+ aoch3= 110.6646
+ ahh1=60.00
+ ahh2=180.00
+ ahh3=300.00
+ 
+                                                                                 ! Use the cc-pVTZ-F12 basis set
+ basis=cc-pVTZ-F12
+ 
+                                                                                 ! Use explicitly correlated F12 methods
+                                                                            ! First, MP2-F12 (useful for initial electronic energy)
+ {mp2-f12}
+ 
+                                                                        ! If desired, perform CCSD(T)-F12 for more accurate results
+ {ccsd(t)-f12}
+ 
+                                                                                 ! Output the energy
+ 
+ Commands initialized (818), CPU time= 0.01 sec, 672 directives.
+ Default parameters read. Elapsed time= 0.05 sec
+
+ Checking input...
+ Passed
+1
+
+
+                                         ***  PROGRAM SYSTEM MOLPRO  ***
+                                       Copyright, TTI GmbH Stuttgart, 2015
+                                    Version 2022.1 linked Mar  3 2022 23:20:00
+
+
+ **********************************************************************************************************************************
+ LABEL *   Methanol Ground State Energy with CCSD(T)-F12 and cc-pVTZ-F12                 
+  (8 PROC) 64 bit serial version                                                         DATE: 27-Sep-24          TIME: 10:18:51  
+ **********************************************************************************************************************************
+
+ SHA1:             31073afc4d8441e10870424e0d77336a33bc4286
+ **********************************************************************************************************************************
+
+ Memory per process:       500 MW
+ Total memory per node:    500 MW
+
+ GA preallocation disabled
+ GA check disabled
+
+ Variable memory set to 500.0 MW
+
+ SETTING RE1            =         1.42960000                                  
+ SETTING RE2            =         0.95887000                                  
+ SETTING RE3            =         1.09229400                                  
+ SETTING RE4            =         1.09229400                                  
+ SETTING RE5            =         1.09229400                                  
+ SETTING AE1            =       107.98120000                                  
+ SETTING AE2            =       110.66460000                                  
+ SETTING AE3            =       110.66460000                                  
+ SETTING AE4            =       110.66460000                                  
+ SETTING AHH1           =        60.00000000                                  
+ SETTING AHH2           =       180.00000000                                  
+ SETTING AHH3           =       300.00000000                                  
+ SETTING RCO            =         1.42960000                                  
+ SETTING ROH            =         0.95887000                                  
+ SETTING RCH1           =         1.09229400                                  
+ SETTING RCH2           =         1.09229400                                  
+ SETTING RCH3           =         1.09229400                                  
+ SETTING ACOH           =       107.98120000                                  
+ SETTING AOCH1          =       110.66460000                                  
+ SETTING AOCH2          =       110.66460000                                  
+ SETTING AOCH3          =       110.66460000                                  
+ SETTING AHH1           =        60.00000000                                  
+ SETTING AHH2           =       180.00000000                                  
+ SETTING AHH3           =       300.00000000                                  
+ SETTING BASIS          =    CC-PVTZ-F12
+
+
+ Recomputing integrals since basis changed
+
+
+ Using spherical harmonics
+
+ Library entry C      S cc-pVTZ-F12          selected for orbital group  1
+ Library entry C      P cc-pVTZ-F12          selected for orbital group  1
+ Library entry C      D cc-pVTZ-F12          selected for orbital group  1
+ Library entry C      F cc-pVTZ-F12          selected for orbital group  1
+ Library entry O      S cc-pVTZ-F12          selected for orbital group  2
+ Library entry O      P cc-pVTZ-F12          selected for orbital group  2
+ Library entry O      D cc-pVTZ-F12          selected for orbital group  2
+ Library entry O      F cc-pVTZ-F12          selected for orbital group  2
+ Library entry H      S cc-pVTZ-F12          selected for orbital group  3
+ Library entry H      P cc-pVTZ-F12          selected for orbital group  3
+ Library entry H      D cc-pVTZ-F12          selected for orbital group  3
+
+
+ PROGRAM * SEWARD (Integral evaluation for generally contracted gaussian basis sets)     Author: Roland Lindh, 1990
+
+ Geometry written to block  1 of record 700
+
+ Orientation using atomic masses  
+ Molecule type: Asymmetric top
+ Symmetry elements: X
+ Rotational constants:      23.6333757     24.5065391    128.9114827 GHz  (calculated with average atomic masses)
+
+ Point group  Cs  
+
+
+
+ ATOMIC COORDINATES
+
+ NR  ATOM    CHARGE       X              Y              Z
+
+   1  C       6.00    0.000000000    0.021622205   -1.383678043
+   2  O       8.00    0.000000000   -0.126383340    1.313817109
+   3  H       1.00    0.000000000    1.563882378    1.966773405
+   4  H1      1.00    1.672584827    1.025746373   -2.058106820
+   5  H3      1.00   -1.672584827    1.025746373   -2.058106820
+   6  H2      1.00    0.000000000   -1.866904676   -2.216820134
+
+ Bond lengths in Bohr (Angstrom)
+
+ 1-2  2.701552468  1-4  2.064136508  1-5  2.064136508  1-6  2.064136508  2-3  1.812001689
+     ( 1.429600000)     ( 1.092294000)     ( 1.092294000)     ( 1.092294000)     ( 0.958870000)
+
+ Bond angles
+
+  1-2-3  107.98120000   2-1-4  110.66460000   2-1-5  110.66460000   2-1-6  110.66460000
+
+  4-1-5  108.25192757   4-1-6  108.25192757   5-1-6  108.25192757
+
+ NUCLEAR CHARGE:                   18
+ NUMBER OF PRIMITIVE AOS:         228
+ NUMBER OF SYMMETRY AOS:          206
+ NUMBER OF CONTRACTIONS:          178   (  114A'  +   64A"  )
+ NUMBER OF INNER CORE ORBITALS:     0   (    0A'  +    0A"  )
+ NUMBER OF OUTER CORE ORBITALS:     2   (    2A'  +    0A"  )
+ NUMBER OF VALENCE ORBITALS:       12   (    9A'  +    3A"  )
+
+
+ NUCLEAR REPULSION ENERGY   40.16373301
+
+ Eigenvalues of metric
+
+         1 0.891E-04 0.188E-03 0.310E-03 0.462E-03 0.495E-03 0.562E-03 0.621E-03 0.624E-03
+         2 0.327E-03 0.571E-03 0.687E-03 0.180E-02 0.355E-02 0.488E-02 0.647E-02 0.854E-02
+
+
+ Contracted 2-electron integrals neglected if value below      1.0D-11
+ AO integral compression algorithm  1   Integral accuracy      1.0D-11
+
+     331.350 MB (compressed) written to integral file ( 53.4%)
+
+
+ NUMBER OF SORTED TWO-ELECTRON INTEGRALS:   64554730.     BUFFER LENGTH:  32768
+ NUMBER OF SEGMENTS:   5  SEGMENT LENGTH:   15997996      RECORD LENGTH: 524288
+
+ Memory used in sort:      16.56 MW
+
+ SORT1 READ    77497885. AND WROTE    63543333. INTEGRALS IN    184 RECORDS. CPU TIME:     0.63 SEC, REAL TIME:     0.87 SEC
+ SORT2 READ    63543333. AND WROTE    64554730. INTEGRALS IN   1264 RECORDS. CPU TIME:     0.70 SEC, REAL TIME:     0.90 SEC
+
+ FILE SIZES:   FILE 1:   362.2 MBYTE,  FILE 4:   771.8 MBYTE,   TOTAL:   1134.0 MBYTE
+
+ OPERATOR DM      FOR CENTER  0  COORDINATES:    0.000000    0.000000    0.000000
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      19      297.18       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1300     1700   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    ERIS     OPER   
+
+ PROGRAMS   *        TOTAL       INT
+ CPU TIMES  *        11.84     11.74
+ REAL TIME  *         5.19 SEC
+ DISK USED  *         1.06 GB
+ **********************************************************************************************************************************
+
+
+ PROGRAM * MP2 (Closed-shell)     Authors: C. Hampel, H.-J. Werner, 1991, M. Deegan, P.J. Knowles, 1992
+
+                                   MP2-F12 implementation by H.-J. Werner, 2007
+
+                   Density fitting integral evaluation by F.R. Manby, 2003,2007, G. Knizia, 2010
+
+
+ The number of valence orbitals is .le. 0.
+ One possible cause of this is that there are no orbitals available, ie you might have forgotten
+ to do a Hartree-Fock calculation. Another possiblity is that the number of electrons is .le. half
+ the number of uncorrelated core orbitals.
+
+ GLOBAL ERROR fehler on processor   0                                         

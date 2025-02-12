@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<molpro xmlns="http://www.molpro.net/schema/molpro-output"
+  xmlns:xsd="http://www.w3.org/1999/XMLSchema"
+  xmlns:cml="http://www.xml-cml.org/schema"
+  xmlns:stm="http://www.xml-cml.org/schema"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <job>
+  <jobstep command="HF-SCF" commandset="SCFPRO">
+   <cml:molecule>
+    <cml:symmetry pointGroup="C1">
+    </cml:symmetry>
+    <cml:atomArray>
+     <cml:atom id="a1" elementType="C" x3="0.10046852724257E-01" y3="-0.554377272722934E-02"
+       z3="-0.501276399066058"/>
+     <cml:atom id="a2" elementType="O" x3="0.282091526064995E-02" y3="-0.594236293854341E-01"
+       z3="0.497244881064848"/>
+     <cml:atom id="a3" elementType="H" x3="-0.588211788499492E-01" y3="0.81515362872616"
+       z3="0.700505481840466"/>
+     <cml:atom id="a4" elementType="H" x3="0.846013529337968" y3="-0.391679320936277"
+       z3="-0.891223900661754"/>
+     <cml:atom id="a5" elementType="H" x3="-0.867005403920974" y3="-0.55252614344535"
+       z3="-0.877560367947398"/>
+     <cml:atom id="a6" elementType="H" x3="-0.846865196490675E-01" y3="1.13836654706296"
+       z3="-0.851268925323822"/>
+    </cml:atomArray>
+    <cml:bondArray>
+     <cml:bond atomRefs2="a1 a2"/>
+     <cml:bond atomRefs2="a1 a3"/>
+     <cml:bond atomRefs2="a2 a3"/>
+     <cml:bond atomRefs2="a1 a4"/>
+     <cml:bond atomRefs2="a1 a5"/>
+     <cml:bond atomRefs2="a1 a6"/>
+    </cml:bondArray>
+   </cml:molecule>
+   <property name="Energy" method="RHF" principal="true" stateSymmetry="1" stateNumber="1"
+     value="-114.789808163023"/>
+   <property name="One-electron energy" method="RHF" value="-254.672728737313"/>
+   <property name="Two-electron energy" method="RHF" value="89.8056164844647"/>
+   <property name="Kinetic energy" method="RHF" value="117.17830007762"/>
+   <property name="Nuclear energy" method="RHF" value="50.0773040898255"/>
+   <property name="Virial quotient" method="RHF" value="-0.979616602109649"/>
+   <property name="Dipole moment" method="RHF" principal="true" stateSymmetry="1"
+     stateNumber="1"
+     value="0.472165262538211E-01 0.518321652910758 0.371501845672102"/>
+   <time start="13:11:11" end="13:15:11" cpu="1415.86" system="37.24" real="240.06"/>
+   <storage units="megabyte" memory="0.0" sf="0.0" df="22246.48" eaf="0.0"/>
+   <summary overall_method="HF/cc-pVQZ-F12"/>
+  </jobstep>
+  <jobstep command="MP2-F12" commandset="CCSD">
+   <property name="energy" method="Reference" stateSymmetry="1" stateNumber="1"
+     value="-114.789808163023"/>
+   <property name="" method="F12 singles correction" stateSymmetry="1" stateNumber="1"
+     value="-0.305311467360343E-03"/>
+   <property name="energy" method="New reference" stateSymmetry="1" stateNumber="1"
+     value="-114.79011347449"/>
+   <property name="singlet correction" method="F12/3C(F)" stateSymmetry="1" stateNumber="1"
+     value="-0.199950906446301E-01"/>
+   <property name="triplet correction" method="F12/3C(F)" stateSymmetry="1" stateNumber="1"
+     value="-0.153613271282617E-02"/>
+   <property name="total correction" method="F12/3C(F)" stateSymmetry="1" stateNumber="1"
+     value="-0.215312233574563E-01"/>
+   <property name="singlet pair energy" method="MP2-F12/3C(F)" stateSymmetry="1"
+     stateNumber="1" value="-0.321025697659663"/>
+   <property name="triplet pair energy" method="MP2-F12/3C(F)" stateSymmetry="1"
+     stateNumber="1" value="-0.157472867315631"/>
+   <property name="correlation energy" method="MP2-F12/3C(F)" stateSymmetry="1"
+     stateNumber="1" value="-0.478498564975294"/>
+   <property name="total energy" method="MP2-F12/3C(F)" principal="true" stateSymmetry="1"
+     stateNumber="1" value="-115.268612039465"/>
+   <time start="13:15:11" end="13:15:38" cpu="138.84" system="2.43" real="26.93"/>
+   <storage units="megabyte" memory="0.0" sf="0.0" df="22246.48" eaf="0.0"/>
+   <summary overall_method="MP2-F12/cc-pVQZ-F12"/>
+  </jobstep>
+  <jobstep command="CCSD(T)-F12" commandset="CCSD">
+   <property name="correlation energy" method="CCSD" stateSymmetry="1" stateNumber="1"
+     value="-0.466635043439487"/>
+   <property name="correction (uncoupled)" method="MP2-F12" stateSymmetry="1"
+     stateNumber="1" value="-0.214795289325926E-01"/>
+   <property name="doubles correction" method="C*T" stateSymmetry="1" stateNumber="1"
+     value="-0.172551332629572E-03"/>
+   <property name="correction" method="f12b" stateSymmetry="1" stateNumber="1"
+     value="0.418043628264481E-02"/>
+   <property name="energy" method="Reference" stateSymmetry="1" stateNumber="1"
+     value="-114.789808163023"/>
+   <property name="" method="F12 singles correction" stateSymmetry="1" stateNumber="1"
+     value="-0.305311467360343E-03"/>
+   <property name="energy" method="New reference" stateSymmetry="1" stateNumber="1"
+     value="-114.79011347449"/>
+   <property name="singlet correction" method="F12a" stateSymmetry="1" stateNumber="1"
+     value="-0.20121954478693E-01"/>
+   <property name="triplet correction" method="F12a" stateSymmetry="1" stateNumber="1"
+     value="-0.153012578652925E-02"/>
+   <property name="total correction" method="F12a" stateSymmetry="1" stateNumber="1"
+     value="-0.216520802652222E-01"/>
+   <property name="singlet pair energy" method="CCSD-F12a" stateSymmetry="1" stateNumber="1"
+     value="-0.342260467880222"/>
+   <property name="triplet pair energy" method="CCSD-F12a" stateSymmetry="1" stateNumber="1"
+     value="-0.146026655632333"/>
+   <property name="correlation energy" method="CCSD-F12a" stateSymmetry="1" stateNumber="1"
+     value="-0.488287123704709"/>
+   <property name="contribution" method="Triples (T)" stateSymmetry="1" stateNumber="1"
+     value="-0.149254307335849E-01"/>
+   <property name="correlation energy" method="Total" stateSymmetry="1" stateNumber="1"
+     value="-0.503212554438294"/>
+   <property name="total energy" method="CCSD-F12a" stateSymmetry="1" stateNumber="1"
+     value="-115.278400598195"/>
+   <property name="energy" method="CCSD[T]-F12a" stateSymmetry="1" stateNumber="1"
+     value="-115.293751547265"/>
+   <property name="energy" method="CCSD-T-F12a" stateSymmetry="1" stateNumber="1"
+     value="-115.293181836429"/>
+   <property name="total energy" method="CCSD(T)-F12a" principal="true" stateSymmetry="1"
+     stateNumber="1" value="-115.293326028928"/>
+   <property name="singlet pair energy" method="CCSD-F12b" stateSymmetry="1" stateNumber="1"
+     value="-0.338280612155106"/>
+   <property name="triplet pair energy" method="CCSD-F12b" stateSymmetry="1" stateNumber="1"
+     value="-0.145826075074804"/>
+   <property name="correlation energy" method="CCSD-F12b" stateSymmetry="1" stateNumber="1"
+     value="-0.484106687422066"/>
+   <property name="contribution" method="Triples (T)" stateSymmetry="1" stateNumber="1"
+     value="-0.149254307335838E-01"/>
+   <property name="correlation energy" method="Total" stateSymmetry="1" stateNumber="1"
+     value="-0.499032118155649"/>
+   <property name="total energy" method="CCSD-F12b" stateSymmetry="1" stateNumber="1"
+     value="-115.274220161912"/>
+   <property name="energy" method="CCSD[T]-F12b" stateSymmetry="1" stateNumber="1"
+     value="-115.289571110982"/>
+   <property name="energy" method="CCSD-T-F12b" stateSymmetry="1" stateNumber="1"
+     value="-115.289001400146"/>
+   <property name="total energy" method="CCSD(T)-F12b" principal="true" stateSymmetry="1"
+     stateNumber="1" value="-115.289145592646"/>
+   <time start="13:15:38" end="13:22:23" cpu="2847.86" system="36.54" real="405.49"/>
+   <storage units="megabyte" memory="0.0" sf="0.0" df="22246.48" eaf="0.0"/>
+   <summary overall_method="CCSD(T)-F12/cc-pVQZ-F12"/>
+  </jobstep>
+<table xmlns="http://www.w3.org/1999/xhtml" id="table1">
+<thead><tr><th>XXX</th><th>RCO</th><th>ROH</th><th>RCH1</th><th>RCH2</th><th>RCH3</th><th>ACOH</th><th>AOCH1</th><th>AOCH2</th><th>AOCH3</th><th>AHH1</th><th>AHH2</th><th>AHH3</th><th>ENERGY</th><th>POINT</th></tr></thead><tbody>
+<tr><td>"MMM"</td><td>   1.00000000</td><td>   0.90000000</td><td>   1.00000000</td><td>   1.10000000</td><td>   1.20000000</td><td>   100.00000000</td><td>   112.00000000</td><td>   108.00000000</td><td>   110.00000000</td><td>   119.92421252</td><td>   241.13137085</td><td>   358.94441663</td><td>   -115.29332603</td><td>   2.0000</td></tr>
+</tbody></table>
+  <stm:metadataList>
+   <stm:metadata name="dc:date" content="2024-10-16T13:22:24+01:00"/>
+   <stm:metadata name="dc:creator" content="asmola"/>
+   <stm:metadata name="dc:title"
+     content="Methanol Ground State Energy with CCSD(T)-F12 and cc-pVQZ-F12"/>
+   <stm:metadata name="cmlm:insilico" content="Molpro"/>
+  </stm:metadataList>
+  <platform>
+   <version major="2022" minor="1" SHA="31073afc4d8441e10870424e0d77336a33bc4286"
+     integer_bits="64" parallelism="serial">
+    2022.1
+    <date year="2024" month="10" day="16" hour="13" minute="11" second="11">
+     2024-10-16T13:11:11
+    </date>
+   </version>
+   <licence id="uclcc"/>
+   <parallel processes="1" nodes="1" all_processes="1" openmp="8"/>
+   <dimensions natom="400" nvalence="500" nvalence_pno="1000" nbasis="12000" nstate="100"
+     nsymm="16" nrec="512" nprim="2" ncol="100"/>
+  </platform>
+  <input>
+   <p>***,Methanol Ground State Energy with CCSD(T)-F12 and cc-pVQZ-F12</p>
+   <p>memory,500,m;</p>
+   <p>gthresh,energy=1.d-10,zero=1.d-14,thrint=1.d-14,oneint=1.d-14,twoint=1.d-14,prefac=1.d-20</p>
+   <p>geometry={angstrom</p>
+   <p>c</p>
+   <p>o , 1, rco</p>
+   <p>h , 2, roh, 1, acoh</p>
+   <p>h1, 1, rch1, 2, aoch1  3  ahh1</p>
+   <p>h2, 1, rch2, 2, aoch2, 3, ahh2</p>
+   <p>h3, 1, rch3, 2, aoch3, 3, ahh3</p>
+   <p>}</p>
+   <p>! Specify the initial values of the internal coordinates (in Angstroms and degrees)</p>
+   <p>rco= 1.0</p>
+   <p>roh= 0.9</p>
+   <p>rch1= 1.0</p>
+   <p>rch2= 1.1</p>
+   <p>rch3= 1.2</p>
+   <p>acoh= 100.0</p>
+   <p>aoch1= 112.0</p>
+   <p>aoch2= 108.0</p>
+   <p>aoch3= 110.0</p>
+   <p>ahh1=119.9242125236074</p>
+   <p>ahh2=241.13137084989847</p>
+   <p>ahh3=358.94441662649416</p>
+   <p>! Use the cc-pVQZ-F12 basis set</p>
+   <p>basis=cc-pVQZ-F12</p>
+   <p>hf</p>
+   <p>! Use explicitly correlated F12 methods</p>
+   <p>! First, MP2-F12 (useful for initial electronic energy)</p>
+   <p>{mp2-f12}</p>
+   <p>! If desired, perform CCSD(T)-F12 for more accurate results</p>
+   <p>{ccsd(t)-f12}</p>
+   <p>! Output the energy</p>
+   <p>xxx = "mmm"</p>
+   <p>point = 2</p>
+   <p>text ### CH3OH</p>
+   <p>table,xxx,rco,roh,rch1,rch2,rch3,acoh,aoch1,aoch2,aoch3,ahh1,ahh2,ahh3,energy,point</p>
+   <p>DIGITS, 0, 8, 8, 8, 8, 8, 8, 8, 8, 8,  8,  8,  8, 8, 4</p>
+   <p>save,CH3OH_MEP_MP2_2.dat,new</p>
+  </input>
+  <diagnostics warnings="0"/>
+ </job>
+</molpro>

@@ -1,0 +1,75 @@
+
+ Working directory              : /tmp/asmola/molpro.Wpa6uaQKnh/
+ Global scratch directory       : /tmp/asmola/molpro.Wpa6uaQKnh/
+ Wavefunction directory         : /home/asmola/wfu/
+ Main file repository           : /tmp/asmola/molpro.Wpa6uaQKnh/
+
+ id        : uclcc
+
+ Nodes                        nprocs
+ vincent.theory.phys.ucl.ac.uk    1
+ GA implementation: MPI file
+ GA implementation (serial work in mppx): MPI file
+
+ Using customized tuning parameters: mindgm=1; mindgv=20; mindgc=4; mindgr=1; noblas=0; minvec=7
+ default implementation of scratch files=df  
+
+
+ Variables initialized (1015), CPU time= 0.01 sec
+ ***,Methanol Ground State Energy with CCSD(T)-F12, cc-pVTZ-F12, and DBOC
+ memory,500,m;
+ 
+ geometry={angstrom
+ c
+ o , 1, rco
+ h , 2, roh, 1, acoh
+ h1, 1, rch1, 2, aoch1  3  ahh1
+ h2, 1, rch2, 2, aoch2, 3, ahh2
+ h3, 1, rch3, 2, aoch3, 3, ahh3
+ }
+ 
+ rco= 1.4296
+ roh= 0.95887
+ rch1= 1.092294
+ rch2= 1.092294
+ rch3= 1.092294
+ acoh= 107.9812
+ aoch1= 110.6646
+ aoch2= 110.6646
+ aoch3= 110.6646
+ ahh1=60.00
+ ahh2=180.00
+ ahh3=300.00
+ 
+                                                                                 ! Use the cc-pVTZ-F12 basis set
+ basis=cc-pVTZ-F12
+ 
+                                                                                 ! Perform Hartree-Fock calculation
+ hf
+ 
+                                                                                 ! Perform CCSD(T)-F12 energy calculation
+ {ccsd(t)-f12}
+ 
+                                                                                 ! Compute DBOC correction
+ dboc
+ 
+                                                                         ! Save the final total energy (CCSD(T) + DBOC) for fitting
+ energy_total = energy + dboc
+ 
+                                                                                 ! Output the energy for fitting
+ table, energy_total
+ 
+ Commands initialized (818), CPU time= 0.00 sec, 672 directives.
+ Default parameters read. Elapsed time= 0.06 sec
+
+ Checking input...
+
+ Unknown command or directive DBOC
+
+    1 input errors found
+
+ ? Error
+ ? Input errors!
+ ? The problem occurs in check_input
+
+ GLOBAL ERROR fehler on processor   0                                         

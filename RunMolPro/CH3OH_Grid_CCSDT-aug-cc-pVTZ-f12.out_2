@@ -1,0 +1,327 @@
+
+ Working directory              : /tmp/asmola/molpro.E1CVUCH4kQ/
+ Global scratch directory       : /tmp/asmola/molpro.E1CVUCH4kQ/
+ Wavefunction directory         : /home/asmola/wfu/
+ Main file repository           : /tmp/asmola/molpro.E1CVUCH4kQ/
+
+ id        : uclcc
+
+ Nodes                        nprocs
+ vincent.theory.phys.ucl.ac.uk    1
+ GA implementation: MPI file
+ GA implementation (serial work in mppx): MPI file
+
+ Using customized tuning parameters: mindgm=1; mindgv=20; mindgc=4; mindgr=1; noblas=0; minvec=7
+ default implementation of scratch files=df  
+
+
+ Variables initialized (1015), CPU time= 0.01 sec
+ ***,Methanol Ground State Energy with CCSD(T)-F12 and aug-cc-pVTZ-F12
+ memory,500,m;
+ 
+ geometry={angstrom
+ c
+ o , 1, rco
+ h , 2, roh, 1, acoh
+ h1, 1, rch1, 2, aoch1  3  ahh1
+ h2, 1, rch2, 2, aoch2, 3, ahh2
+ h3, 1, rch3, 2, aoch3, 3, ahh3
+ }
+ 
+                                                ! Specify the initial values of the internal coordinates (in Angstroms and degrees)
+ re1= 1.4296
+ re2= 0.95887
+ re3= 1.092294
+ re4= 1.092294
+ re5= 1.092294
+ ae1= 107.9812
+ ae2= 110.6646
+ ae3= 110.6646
+ ae4= 110.6646
+ ahh1=60.00
+ ahh2=180.00
+ ahh3=300.00
+ 
+ rco= 1.4296
+ roh= 0.95887
+ rch1= 1.092294
+ rch2= 1.092294
+ rch3= 1.092294
+ acoh= 107.9812
+ aoch1= 110.6646
+ aoch2= 110.6646
+ aoch3= 110.6646
+ ahh1=60.00
+ ahh2=180.00
+ ahh3=300.00
+ 
+ 
+ 
+                                                                                 ! Use the cc-pVTZ-F12 basis set
+ basis=aug-cc-pVTZ-F12b
+ 
+ 
+ hf;
+ 
+ 
+                                                                                 ! Use explicitly correlated F12 methods
+                                                                            ! First, MP2-F12 (useful for initial electronic energy)
+ {mp2-f12b}
+ 
+                                                                        ! If desired, perform CCSD(T)-F12 for more accurate results
+ {ccsd(t)-f12b}
+ 
+                                                                                 ! Output the energy
+ 
+ Commands initialized (818), CPU time= 0.00 sec, 672 directives.
+ Default parameters read. Elapsed time= 0.13 sec
+
+ Checking input...
+ Passed
+1
+
+
+                                         ***  PROGRAM SYSTEM MOLPRO  ***
+                                       Copyright, TTI GmbH Stuttgart, 2015
+                                    Version 2022.1 linked Mar  3 2022 23:20:00
+
+
+ **********************************************************************************************************************************
+ LABEL *   Methanol Ground State Energy with CCSD(T)-F12 and aug-cc-pVTZ-F12             
+  (14 PROC) 64 bit serial version                                                        DATE: 23-Jan-25          TIME: 11:37:46  
+ **********************************************************************************************************************************
+
+ SHA1:             31073afc4d8441e10870424e0d77336a33bc4286
+ **********************************************************************************************************************************
+
+ Memory per process:       500 MW
+ Total memory per node:    500 MW
+
+ GA preallocation disabled
+ GA check disabled
+
+ Variable memory set to 500.0 MW
+
+ SETTING RE1            =         1.42960000                                  
+ SETTING RE2            =         0.95887000                                  
+ SETTING RE3            =         1.09229400                                  
+ SETTING RE4            =         1.09229400                                  
+ SETTING RE5            =         1.09229400                                  
+ SETTING AE1            =       107.98120000                                  
+ SETTING AE2            =       110.66460000                                  
+ SETTING AE3            =       110.66460000                                  
+ SETTING AE4            =       110.66460000                                  
+ SETTING AHH1           =        60.00000000                                  
+ SETTING AHH2           =       180.00000000                                  
+ SETTING AHH3           =       300.00000000                                  
+ SETTING RCO            =         1.42960000                                  
+ SETTING ROH            =         0.95887000                                  
+ SETTING RCH1           =         1.09229400                                  
+ SETTING RCH2           =         1.09229400                                  
+ SETTING RCH3           =         1.09229400                                  
+ SETTING ACOH           =       107.98120000                                  
+ SETTING AOCH1          =       110.66460000                                  
+ SETTING AOCH2          =       110.66460000                                  
+ SETTING AOCH3          =       110.66460000                                  
+ SETTING AHH1           =        60.00000000                                  
+ SETTING AHH2           =       180.00000000                                  
+ SETTING AHH3           =       300.00000000                                  
+ SETTING BASIS          =    AUG-CC-PVTZ-F12B
+
+
+ Recomputing integrals since basis changed
+
+
+ Using spherical harmonics
+
+ Cannot find default basis AUG-CC-PVTZ-F12B for atom C
+
+ Default basis sets for atom=C  key= context=
+ Number of basis sets found:  179
+
+ cc-pVDZ             0  2
+ aug-cc-pVDZ         0  2
+ d-aug-cc-pVDZ       0  2
+ t-aug-cc-pVDZ       0  2
+ cc-pVTZ             0  3
+ aug-cc-pVTZ         0  3
+ d-aug-cc-pVTZ       0  3
+ t-aug-cc-pVTZ       0  3
+ cc-pVQZ             0  4
+ aug-cc-pVQZ         0  4
+ d-aug-cc-pVQZ       0  4
+ t-aug-cc-pVQZ       0  4
+ cc-pV5Z             0  5
+ aug-cc-pV5Z         0  5
+ d-aug-cc-pV5Z       0  5
+ t-aug-cc-pV5Z       0  5
+ cc-pV6Z             0  6
+ aug-cc-pV6Z         0  6
+ d-aug-cc-pV6Z       0  6
+ t-aug-cc-pV6Z       0  6
+ cc-pCVDZ            0  2
+ aug-cc-pCVDZ        0  2
+ cc-pCVTZ            0  3
+ aug-cc-pCVTZ        0  3
+ cc-pCVQZ            0  4
+ aug-cc-pCVQZ        0  4
+ cc-pCV5Z            0  5
+ aug-cc-pCV5Z        0  5
+ cc-pCV6Z            0  6
+ aug-cc-pCV6Z        0  6
+ cc-pwCVDZ           0  2
+ aug-cc-pwCVDZ       0  2
+ cc-pwCVTZ           0  3
+ aug-cc-pwCVTZ       0  3
+ cc-pwCVQZ           0  4
+ aug-cc-pwCVQZ       0  4
+ cc-pwCV5Z           0  5
+ aug-cc-pwCV5Z       0  5
+ cc-pVDZ-DK          0  2
+ aug-cc-pVDZ-DK      0  2
+ cc-pVTZ-DK          0  3
+ aug-cc-pVTZ-DK      0  3
+ cc-pVQZ-DK          0  4
+ aug-cc-pVQZ-DK      0  4
+ cc-pV5Z-DK          0  5
+ aug-cc-pV5Z-DK      0  5
+ cc-pV(D+d)Z-DK      0  2
+ aug-cc-pV(D+d)Z-DK  0  2
+ cc-pV(T+d)Z-DK      0  3
+ aug-cc-pV(T+d)Z-DK  0  3
+ cc-pV(Q+d)Z-DK      0  4
+ aug-cc-pV(Q+d)Z-DK  0  4
+ cc-pV(5+d)Z-DK      0  5
+ aug-cc-pV(5+d)Z-DK  0  5
+ cc-pV(6+d)Z-DK      0  6
+ aug-cc-pV(6+d)Z-DK  0  6
+ cc-pwCVDZ-DK        0  2
+ aug-cc-pwCVDZ-DK    0  2
+ cc-pCVDZ-DK         0  2
+ aug-cc-pCVDZ-DK     0  2
+ cc-pwCVTZ-DK        0  3
+ aug-cc-pwCVTZ-DK    0  3
+ cc-pCVTZ-DK         0  3
+ aug-cc-pCVTZ-DK     0  3
+ cc-pwCVQZ-DK        0  4
+ aug-cc-pwCVQZ-DK    0  4
+ cc-pCVQZ-DK         0  4
+ aug-cc-pCVQZ-DK     0  4
+ cc-pwCV5Z-DK        0  5
+ aug-cc-pwCV5Z-DK    0  5
+ cc-pCV5Z-DK         0  5
+ aug-cc-pCV5Z-DK     0  5
+ cc-pVDZ-X2C         0  2
+ aug-cc-pVDZ-X2C     0  2
+ cc-pVTZ-X2C         0  3
+ aug-cc-pVTZ-X2C     0  3
+ cc-pVQZ-X2C         0  4
+ aug-cc-pVQZ-X2C     0  4
+ cc-pV5Z-X2C         0  5
+ aug-cc-pV5Z-X2C     0  5
+ cc-pV6Z-X2C         0  6
+ aug-cc-pV6Z-X2C     0  6
+ cc-pV(D+d)Z-X2C     0  2
+ aug-cc-pV(D+d)Z-X2  0  2
+ cc-pV(T+d)Z-X2C     0  3
+ aug-cc-pV(T+d)Z-X2  0  3
+ cc-pV(Q+d)Z-X2C     0  4
+ aug-cc-pV(Q+d)Z-X2  0  4
+ cc-pV(5+d)Z-X2C     0  5
+ aug-cc-pV(5+d)Z-X2  0  5
+ cc-pV(6+d)Z-X2C     0  6
+ aug-cc-pV(6+d)Z-X2  0  6
+ cc-pwCVDZ-X2C       0  2
+ aug-cc-pwCVDZ-X2C   0  2
+ cc-pwCVTZ-X2C       0  3
+ aug-cc-pwCVTZ-X2C   0  3
+ cc-pwCVQZ-X2C       0  4
+ aug-cc-pwCVQZ-X2C   0  4
+ cc-pwCV5Z-X2C       0  5
+ aug-cc-pwCV5Z-X2C   0  5
+ cc-pCVDZ-X2C        0  2
+ aug-cc-pCVDZ-X2C    0  2
+ cc-pCVTZ-X2C        0  3
+ aug-cc-pCVTZ-X2C    0  3
+ cc-pCVQZ-X2C        0  4
+ aug-cc-pCVQZ-X2C    0  4
+ cc-pCV5Z-X2C        0  5
+ aug-cc-pCV5Z-X2C    0  5
+ cc-pCV6Z-X2C        0  6
+ aug-cc-pCV6Z-X2C    0  6
+ cc-pVDZ-F12         0  2
+ aug-cc-pVDZ-F12     0  2
+ cc-pVTZ-F12         0  3
+ aug-cc-pVTZ-F12     0  3
+ cc-pVQZ-F12         0  4
+ aug-cc-pVQZ-F12     0  4
+ cc-pV5Z-F12         0  5
+ aug-cc-pV5Z-F12     0  5
+ cc-pCVDZ-F12        0  2
+ cc-pCVTZ-F12        0  3
+ cc-pCVQZ-F12        0  4
+ aug-cc-pCVDZ-F12    0  2
+ aug-cc-pCVTZ-F12    0  3
+ aug-cc-pCVQZ-F12    0  4
+ aug-cc-pCV5Z-F12    0  5
+ Ahlrichs-pVDZ       0  2
+ Ahlrichs-VDZ        0  1
+ Ahlrichs-VTZ        0  1
+ def1-sv             0  1
+ def1-svp            0  2
+ def1-tzv            0  1
+ def1-tzvp           0  1
+ def1-tzvpp          0  1
+ def1-tzvppp         0  1
+ def2-SVP            0  2
+ def2-SVPD           0  2
+ ASVP                0  2
+ DASVP               0  2
+ SV(P)               0  2
+ ASV(P)              0  2
+ def2-TZVPP          0  3
+ TZVPPD              0  3
+ ATZVPP              0  3
+ DATZVPP             0  3
+ def2-TZVP           0  3
+ TZVPD               0  3
+ ATZVP               0  3
+ def2-QZVPP          0  4
+ QZVPPD              0  4
+ AQZVPP              0  4
+ DAQZVPP             0  4
+ QZVP                0  4
+ QZVPD               0  4
+ AQZVP               0  4
+ MINAO               0  1
+ ECP2SDF_GUESS       0  1
+ atomic-guess        0  1
+ sto-3g              0  1
+ sbkjc               0  1
+ lanl2dz             0  1
+ dz                  0  1
+ dzp                 0  2
+ ECP2SDF             0  1
+ ECP2MWB             0  1
+ ROOS                0  3
+ HUZINAGA            0  1
+ midi                0  1
+ midi-bang           0  1
+ mini                0  1
+ mini-scaled         0  1
+ avdz-orb-oep        0  2
+ avdz-aux-oep        0  2
+ avtz-orb-oep        0  3
+ avtz-aux-oep        0  2
+ avqz-orb-oep        0  4
+ avqz-aux-oep        0  2
+ av5z-orb-oep        0  4
+ av5z-aux-oep        0  2
+ MG3S                0  3
+
+ Please specify a default basis or define basis sets for all atoms!
+ ? Error
+ ? Cannot find AUG-CC-PVTZ-F12B in basis catalogue
+ ? The problem occurs in binput
+
+ GLOBAL ERROR fehler on processor   0                                         

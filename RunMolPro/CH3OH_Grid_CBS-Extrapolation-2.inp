@@ -1,0 +1,37 @@
+***, Methanol Ground State Energy extrapolating to the CBS limit using CCSD(T)-F12b
+memory,500,m;
+
+geometry={angstrom
+c 
+o , 1, rco 
+h , 2, roh, 1, acoh
+h1, 1, rch1, 2, aoch1  3  ahh1
+h2, 1, rch2, 2, aoch2, 3, ahh2
+h3, 1, rch3, 2, aoch3, 3, ahh3
+}
+
+rco= 1.4296
+roh= 0.95887
+rch1= 1.092294
+rch2= 1.092294
+rch3= 1.092294
+acoh= 107.9812
+aoch1= 110.6646
+aoch2= 110.6646
+aoch3= 110.6646
+ahh1=60.00
+ahh2=180.00
+ahh3=300.00
+
+basis=cc-pVTZ-F12
+hf
+ccsd(t)-f12
+extrapolate,basis=cc-pVTZ-F12:cc-pVQZ-F12
+
+table,basissets,energr,energy-energr,energy
+head,basis,ehf,ecorr,etot
+
+
+! Output the energy
+
+--- End of Script ---

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<molpro xmlns="http://www.molpro.net/schema/molpro-output"
+  xmlns:xsd="http://www.w3.org/1999/XMLSchema"
+  xmlns:cml="http://www.xml-cml.org/schema"
+  xmlns:stm="http://www.xml-cml.org/schema"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <job>
+  <jobstep command="HF-SCF" commandset="SCFPRO">
+   <cml:molecule>
+    <cml:symmetry pointGroup="C1">
+    </cml:symmetry>
+    <cml:atomArray>
+     <cml:atom id="a1" elementType="C" x3="0.528691639283173E-02" y3="-0.508513683419576E-02"
+       z3="-0.501330439354033"/>
+     <cml:atom id="a2" elementType="O" x3="0.786472432153912E-02" y3="-0.590857524539472E-01"
+       z3="0.497207135511816"/>
+     <cml:atom id="a3" elementType="H" x3="-0.10927983441025" y3="0.809674258042367"
+       z3="0.70100408475782"/>
+     <cml:atom id="a4" elementType="H" x3="-0.123223684665944" y3="1.13583064844109"
+       z3="-0.850323557230574"/>
+     <cml:atom id="a5" elementType="H" x3="0.868031036164846" y3="-0.321394320891981"
+       z3="-0.89581882179325"/>
+     <cml:atom id="a6" elementType="H" x3="-0.823368086075234" y3="-0.625624399581191"
+       z3="-0.873166304049824"/>
+    </cml:atomArray>
+    <cml:bondArray>
+     <cml:bond atomRefs2="a1 a2"/>
+     <cml:bond atomRefs2="a1 a3"/>
+     <cml:bond atomRefs2="a2 a3"/>
+     <cml:bond atomRefs2="a1 a4"/>
+     <cml:bond atomRefs2="a1 a5"/>
+     <cml:bond atomRefs2="a1 a6"/>
+    </cml:bondArray>
+   </cml:molecule>
