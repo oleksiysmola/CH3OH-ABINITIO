@@ -20,5 +20,5 @@ ahh2=180.00
 ahh3=300.00                                                                 
                                                                                 
                                                                                 
-*CFOUR(CALC=CCSDT,BASIS=AUG-PVDZ,SCF_CONV=10                                     
-CC_CONV=10,FROZEN_CORE=ON,MEMORY=5000000000)   
+*CFOUR(CALC=CCSDT(Q),BASIS=AUG-PVDZ,SCF_CONV=10                                     
+CC_CONV=10,FROZEN_CORE=ON,MEMORY=5000000000)  
