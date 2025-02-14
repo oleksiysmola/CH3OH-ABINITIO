@@ -1,0 +1,5 @@
+As per Owens et al 2015
+E_T = E_CCSDT - E_CCSD(T)
+E_Q = E_CCSDT(Q) - E_CCSDT
+E_HO = E_T + E_Q
+-0.0009736918940319583
