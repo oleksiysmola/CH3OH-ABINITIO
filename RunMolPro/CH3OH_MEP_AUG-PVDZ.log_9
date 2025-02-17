@@ -1,0 +1,76 @@
+
+ Running default procedure: HF-SCF000  MP2
+ Cartesian Coordinates are in [bohr]
+ Creating new Variables:
+ CX1              -0.00151602
+ CY1               0.02161047
+ CZ1              -1.37579127
+ OX2              -0.00156674
+ OY2              -0.12034139
+ OZ2               1.30382348
+ HX3               0.02628905
+ HY3               1.56711682
+ HZ3               1.95987290
+ H1X4              1.69571020
+ H1Y4              0.95174749
+ H1Z4             -2.09788325
+ H2X5             -0.03339173
+ H2Y5             -1.91226247
+ H2Z5             -2.07065127
+ H3X6             -1.64567260
+ H3Y6              1.04610243
+ H3Z6             -2.09294807
+
+ PROGRAM * ALASKA (Gradient of the energy)     Author: R. Lindh
+
+
+ MP2      Gradient info restored from record    5200.1
+
+ Number of core orbitals:           2 (   2 )
+ Number of closed-shell orbitals:   7 (   7 )
+ Number of external orbitals:      73 (  73 )
+
+ Integral thresholds in T2TRAN:            1.0D-10 (PROD)
+
+ Available memory for Transformation: 497830099 words
+ Memory needed for incore algorithm:     397175 words
+ Minimum memory needed:                  148059 words
+
+ Memory used for transformation:           0.40 MW
+ Available memory for gradients:         499.43 MW
+
+ CPU for transformation:                   0.79 sec
+ CPU for integrals and gradient:           2.94 sec
+ Total CPU:                                3.73 sec
+
+ Prescreening statistics:
+ ========================
+
+ Total number of shell quadruplets:        5.56D+03
+ Number of shell quadruplets processed:    5.56D+03 (100.00%)
+
+ MP2 GRADIENT FOR STATE 1.1
+
+ Atom          dE/dx               dE/dy               dE/dz
+
+   1        -0.001231573        -0.003293781         0.001936281
+   2         0.000223876         0.007707571        -0.006931660
+   3        -0.000160903        -0.006755695        -0.002982463
+   4        -0.006788189        -0.002379942         0.002476366
+   5         0.001220606         0.006163474         0.002611659
+   6         0.006736184        -0.001441627         0.002889818
+
+ Nuclear force contribution to virial =        -0.083982914
+ Reading points 1 to 1 from record 702.2,  wavefunction type=MP2             
+
+
+ Symmetry Distinct Nuclear Coordinates / bohr
+
+     ATOM                     X                   Y                   Z
+
+     C               -0.0015160178        0.0216104656       -1.3757912741
+     O               -0.0015667415       -0.1203413911        1.3038234845
+     H                0.0262890459        1.5671168232        1.9598728988
+     H1               1.6957102008        0.9517474924       -2.0978832465
+     H2              -0.0333917322       -1.9122624705       -2.0706512655
+     H3              -1.6456726035        1.0461024343       -2.0929480701

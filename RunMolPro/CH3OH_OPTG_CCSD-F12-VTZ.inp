@@ -1,4 +1,4 @@
-***, Methanol Ground State Energy with CCSD(T)-F12 and cc-pVQZ-F12
+***, Methanol Ground State Energy with CCSD and cc-pVQZ
 memory,500,m;
 
 geometry={angstrom
@@ -20,16 +20,17 @@ acoh= 107.9812
 aoch1= 110.6646
 aoch2= 110.6646
 aoch3= 110.6646
-ahh1=60.00
-ahh2=180.00
-ahh3=300.00
+ahh1=0.00
+ahh2=120.00
+ahh3=240.00
 
-! Use the aug-cc-pVTZ-F12 basis set
-basis=aug-cc-pVTZ-F12
+! Use the aug-cc-pVTZ basis set
+basis=aug-cc-pVTZ
 
 hf
-optg,procedure=runccsd,savexyz=CH3OH_equilibrium_mp2.xyz
-runccsd = {hf;ccsd(t)-f12}
+{optg,procedure=runccsd,savexyz=CH3OH_maxima_mp2.xyz
+active,rco,roh,rch1,rch2,rch3,acoh,aoch1,aoch2,aoch3,ahh2,ahh3;}
+runccsd = {hf;ccsd}
 
 
 --- End of Script ---

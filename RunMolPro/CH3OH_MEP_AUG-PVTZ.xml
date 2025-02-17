@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<molpro xmlns="http://www.molpro.net/schema/molpro-output"
+  xmlns:xsd="http://www.w3.org/1999/XMLSchema"
+  xmlns:cml="http://www.xml-cml.org/schema"
+  xmlns:stm="http://www.xml-cml.org/schema"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <job>
+  <jobstep command="HF-SCF" commandset="SCFPRO">
+   <cml:molecule>
+    <cml:symmetry pointGroup="Cs">
+     <cml:transform3 title="generator" id="X">
+      -1  0  0  0  0  1  0  0  0  0  1  0  0  0  0  1
+     </cml:transform3>
+    </cml:symmetry>
+    <cml:atomArray>
+     <cml:atom id="a1" elementType="C" x3="0.0" y3="0.131205544731682E-01"
+       z3="-0.727984630722182"/>
+     <cml:atom id="a2" elementType="O" x3="0.0" y3="-0.639914611838215E-01"
+       z3="0.68989937830964"/>
+     <cml:atom id="a3" elementType="H" x3="0.0" y3="0.828603098542308" z3="1.038327596409"/>
+     <cml:atom id="a4" elementType="H" x3="0.890372165653092" y3="0.520333222649579"
+       z3="-1.10863671469692"/>
+     <cml:atom id="a5" elementType="H" x3="0.0" y3="-1.00985925722995" z3="-1.09713480050834"/>
+     <cml:atom id="a6" elementType="H" x3="-0.890372165653092" y3="0.520333222649579"
+       z3="-1.10863671469692"/>
+    </cml:atomArray>
+    <cml:bondArray>
+     <cml:bond atomRefs2="a1 a2"/>
+     <cml:bond atomRefs2="a2 a3"/>
+     <cml:bond atomRefs2="a1 a4"/>
+     <cml:bond atomRefs2="a1 a5"/>
+     <cml:bond atomRefs2="a1 a6"/>
+    </cml:bondArray>
+   </cml:molecule>
+   <property name="Energy" method="RHF" principal="true" stateSymmetry="1" stateNumber="1"
+     value="-115.092227693867"/>
+   <property name="One-electron energy" method="RHF" value="-236.922129700981"/>
+   <property name="Two-electron energy" method="RHF" value="81.4845234142874"/>
+   <property name="Kinetic energy" method="RHF" value="114.923123806511"/>
+   <property name="Nuclear energy" method="RHF" value="40.3453785928268"/>
+   <property name="Virial quotient" method="RHF" value="-1.00147145223481"/>
+   <property name="Dipole moment" method="RHF" principal="true" stateSymmetry="1"
+     stateNumber="1" value="0.0 0.589303562237657 -0.392159438444837"/>
+   <time start="18:23:50" end="18:25:33" cpu="209.47" system="3.12" real="103.03"/>
+   <storage units="megabyte" memory="0.0" sf="0.0" df="1242.65" eaf="0.0"/>
+   <summary overall_method="HF/aug-cc-pVTZ"/>
+  </jobstep>
+  <jobstep command="MP2" commandset="CCSD">
+   <property name="energy" method="Reference" stateSymmetry="1" stateNumber="1"
+     value="-115.092227693867"/>
+   <property name="singlet pair energy" method="MP2" stateSymmetry="1" stateNumber="1"
+     value="-0.286762682081801"/>
+   <property name="triplet pair energy" method="MP2" stateSymmetry="1" stateNumber="1"
+     value="-0.149996627251546"/>
+   <property name="correlation energy" method="MP2" stateSymmetry="1" stateNumber="1"
+     value="-0.436759309333347"/>
+   <property name="total energy" method="MP2" principal="true" stateSymmetry="1"
+     stateNumber="1" value="-115.5289870032"/>
+   <time start="18:25:33" end="18:25:41" cpu="32.98" system="0.23" real="8.33"/>
+   <storage units="megabyte" memory="0.0" sf="0.0" df="1242.65" eaf="0.0"/>
+   <summary overall_method="MP2/aug-cc-pVTZ"/>
+  </jobstep>
+  <jobstep command="OPTG" commandset="OPT">
+   <jobstep command="HF-SCF" commandset="SCFPRO">
+    <cml:molecule>
+     <cml:symmetry pointGroup="C1">
+     </cml:symmetry>
+     <cml:atomArray>
+      <cml:atom id="a1" elementType="C" x3="-0.802242058433689E-03" y3="0.114357659069725E-01"
+        z3="-0.728037389225437"/>
+      <cml:atom id="a2" elementType="O" x3="-0.829083921987309E-03" y3="-0.6368192172324E-01"
+        z3="0.689953675031119"/>
+      <cml:atom id="a3" elementType="H" x3="0.139115639807903E-01" y3="0.829282509675831"
+        z3="1.03712007429251"/>
+      <cml:atom id="a4" elementType="H" x3="0.897331194539814" y3="0.50364308349242"
+        z3="-1.11015200520117"/>
+      <cml:atom id="a5" elementType="H" x3="-0.176701437011482E-01" y3="-1.01192572066158"
+        z3="-1.09574146141892"/>
+      <cml:atom id="a6" elementType="H" x3="-0.870852438355291" y3="0.553573568482041"
+        z3="-1.10754042229052"/>
+     </cml:atomArray>
+     <cml:bondArray>
+      <cml:bond atomRefs2="a1 a2"/>
+      <cml:bond atomRefs2="a2 a3"/>
+      <cml:bond atomRefs2="a1 a4"/>
+      <cml:bond atomRefs2="a1 a5"/>
+      <cml:bond atomRefs2="a1 a6"/>
+     </cml:bondArray>
+    </cml:molecule>

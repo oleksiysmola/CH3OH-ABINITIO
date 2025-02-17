@@ -41,7 +41,7 @@
    <property name="Dipole moment" method="RHF" principal="true" stateSymmetry="1"
      stateNumber="1"
      value="-0.266610882913713E-10 0.591952102937122 -0.411406718745067"/>
-   <time start="12:47:30" end="12:59:19" cpu="3595.36" system="63.75" real="709.03"/>
+   <time start="09:46:05" end="09:57:59" cpu="3564.47" system="62.98" real="713.88"/>
    <storage units="megabyte" memory="0.0" sf="0.0" df="48980.57" eaf="0.0"/>
    <summary overall_method="HF/aug-cc-pVQZ-F12"/>
   </jobstep>
@@ -57,7 +57,7 @@
     <property name="Dipole moment" method="RHF" principal="true" stateSymmetry="1"
       stateNumber="1"
       value="-0.333301809359688E-10 0.591952162439632 -0.411408446984581"/>
-    <time start="12:59:19" end="13:00:26" cpu="522.85" system="5.27" real="67.18"/>
+    <time start="09:57:59" end="09:59:04" cpu="509.38" system="5.27" real="65.23"/>
     <storage units="megabyte" memory="0.0" sf="0.0" df="48980.57" eaf="0.0"/>
     <summary overall_method="HF/aug-cc-pVQZ-F12"/>
    </jobstep>
@@ -118,7 +118,7 @@
       value="-115.607090209682"/>
     <property name="total energy" method="CCSD(T)-F12b" principal="true" stateSymmetry="1"
       stateNumber="1" value="-115.607338016698"/>
-    <time start="13:00:26" end="13:21:50" cpu="8227.39" system="100.96" real="1284.05"/>
+    <time start="09:59:04" end="10:16:10" cpu="7523.09" system="69.28" real="1025.66"/>
     <storage units="megabyte" memory="0.0" sf="0.0" df="48980.57" eaf="0.0"/>
     <summary overall_method="HF/aug-cc-pVQZ-F12"/>
    </jobstep>
