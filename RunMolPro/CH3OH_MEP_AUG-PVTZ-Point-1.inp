@@ -1,7 +1,6 @@
 ***, Methanol Ground State Energy with CCSD(T) and aug-cc-pVTZ
 memory,500,m;
 
-symmetry,nosym
 geometry={angstrom
 c 
 o , 1, rco 
@@ -37,24 +36,8 @@ basis=aug-cc-pVTZ
 
 hf
 runccsd = {hf;ccsd}
-
-
-do i = 185, 300, 5
-    ahh2 = i
-    
-    geometry={angstrom
-    c 
-    o , 1, rco 
-    h , 2, roh, 1, acoh
-    h1, 1, rch1, 2, aoch1  3  ahh1
-    h2, 1, rch2, 2, aoch2, 3, ahh2
-    h3, 1, rch3, 2, aoch3, 3, ahh3
-    }
-
-    {OPTG,procedure=runccsd,savexyz=CH3OH_maxima_mp2.xyz
-    active,rco,roh,rch1,rch2,rch3,acoh,aoch1,aoch2,aoch3,ahh1,ahh3;
-    END}
-
-enddo
+{OPTG,procedure=runccsd,savexyz=CH3OH_maxima_mp2.xyz
+active,rco,roh,rch1,rch2,rch3,acoh,aoch1,aoch2,aoch3,ahh1,ahh3;
+END}
 
 --- End of Script ---

@@ -1,0 +1,222 @@
+Mathematica 13.1.0 Kernel for Linux x86 (64-bit)
+Copyright 1988-2022 Wolfram Research, Inc.
+
+In[1]:= 
+In[2]:= 
+In[3]:= 
+In[4]:= 
+In[5]:= In[5]:= 
+In[6]:= 
+In[7]:= 
+In[8]:= 
+In[9]:= 
+In[10]:= 
+In[11]:= 
+In[12]:= 
+In[13]:= 
+In[14]:= 
+In[15]:= 
+In[16]:= 
+Out[16]//MatrixForm= 
+ 
+
+
+>   0         1         0         0         0         0         0
+     
+
+
+    >       0
+
+
+
+    1         0         0         0         0         0         0
+     
+
+
+    >       0
+
+
+
+    0         0         1         0         0         0         0
+     
+
+
+    >       0
+
+
+
+    0         0         0         0         1         0         0
+     
+
+
+    >       0
+
+
+
+    0         0         0         1         0         0         0
+     
+
+
+    >       0
+
+
+
+    0         0         0         0         0         1         0
+     
+
+
+    >       0
+
+                                                                  1
+                                                                -(-)
+    0         0         0         0         0         0           2
+     
+            Sqrt[3]
+            -------
+    >          2
+
+                                                                Sqrt[3]
+                                                                -------
+    0         0         0         0         0         0            2
+     
+            1
+            -
+    >       2
+
+In[17]:= 
+In[18]:= 
+In[19]:= In[19]:= 
+In[20]:= In[20]:= 
+In[21]:= 
+In[22]:= In[22]:= 
+In[23]:= In[23]:= 
+In[24]:= In[24]:= 
+In[25]:= 
+In[26]:= In[26]:= In[26]:= 
+In[27]:= 
+In[28]:= 
+Out[28]//MatrixForm= f
+                      0,0,0,0,0,0,0,0,0
+
+In[29]:= 
+In[30]:= Defining 1st order coefficients...
+
+In[31]:= 
+In[32]:= 
+In[33]:= 
+In[34]:= 
+In[35]:= Defining 2nd order coefficients...
+
+In[36]:= 
+In[37]:= 
+In[38]:= 
+In[39]:= 
+In[40]:= Defining 3rd order coefficients...
+
+In[41]:= 
+In[42]:= 
+In[43]:= 
+In[44]:= 
+In[45]:= Defining 4th order coefficients...
+
+In[46]:= 
+In[47]:= 
+In[48]:= 
+In[49]:= 
+In[50]:= Defining 5th order coefficients...
+
+In[51]:= 
+In[52]:= 
+In[53]:= 
+In[54]:= 
+In[55]:= Defining 6th order coefficients...
+
+In[56]:= 
+In[57]:= 
+In[58]:= 
+In[59]:= 
+In[60]:= In[60]:= In[60]:= 
+In[61]:= Building potentials...
+
+In[62]:= 
+In[63]:= 
+In[64]:= 
+In[65]:= 
+In[66]:= 
+In[67]:= 
+Part::partw: Part 2 of {{}} does not exist.
+
+Part::take: Cannot take positions 2 through 10 in {{}}.
+
+Part::partw: Part 3 of {{}}[[2 ;; 10]] does not exist.
+
+Part::partw: Part 4 of {{}}[[2 ;; 10]] does not exist.
+
+General::stop: Further output of Part::partw
+     will be suppressed during this calculation.
+
+Part::take: Cannot take positions 2 through 10 in {}.
+
+Thread::tdlen: Objects of unequal length in {{}} + {} cannot be combined.
+
+Part::take: Cannot take positions 2 through 10 in {{}}.
+
+General::stop: Further output of Part::take
+     will be suppressed during this calculation.
+
+Thread::tdlen: Objects of unequal length in {{}} + {} cannot be combined.
+
+Thread::tdlen: Objects of unequal length in {{}} + {} cannot be combined.
+
+General::stop: Further output of Thread::tdlen
+     will be suppressed during this calculation.
+
+In[68]:= In[68]:= In[68]:= 
+In[69]:= 
+In[70]:= 
+Thread::tdlen: Objects of unequal length in {} + {{}} cannot be combined.
+
+Thread::tdlen: Objects of unequal length in {} + {{}} cannot be combined.
+
+Thread::tdlen: Objects of unequal length in {} + {{}} + {} + {{}}
+     cannot be combined.
+
+General::stop: Further output of Thread::tdlen
+     will be suppressed during this calculation.
+
+In[71]:= In[71]:= In[71]:= 
+In[72]:= Defining equations...
+
+In[73]:= 
+In[74]:= 
+In[75]:= In[75]:= Solving equations...
+
+In[76]:= 
+In[77]:= 
+In[78]:= 
+Solve::svars: Equations may not give solutions for all "solve" variables.
+
+Solve::svars: Equations may not give solutions for all "solve" variables.
+
+Solve::svars: Equations may not give solutions for all "solve" variables.
+
+General::stop: Further output of Solve::svars
+     will be suppressed during this calculation.
+
+Part::partw: Part 2 of {{}} does not exist.
+
+Part::partw: Part 3 of {{}} does not exist.
+
+In[79]:= In[79]:= 
+In[80]:= 
+In[81]:= In[81]:= 
+Part::partw: Part 2 of {{}} does not exist.
+
+Part::partw: Part 2 of {{}} does not exist.
+
+Part::partw: Part 2 of {{}} does not exist.
+
+General::stop: Further output of Part::partw
+     will be suppressed during this calculation.
+
+In[82]:= 
