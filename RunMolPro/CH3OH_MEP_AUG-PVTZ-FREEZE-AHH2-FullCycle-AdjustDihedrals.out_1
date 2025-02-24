@@ -1,8 +1,8 @@
 
- Working directory              : /tmp/asmola/molpro.u42BbDWyaH/
- Global scratch directory       : /tmp/asmola/molpro.u42BbDWyaH/
+ Working directory              : /tmp/asmola/molpro.beXNw2BD0Q/
+ Global scratch directory       : /tmp/asmola/molpro.beXNw2BD0Q/
  Wavefunction directory         : /home/asmola/wfu/
- Main file repository           : /tmp/asmola/molpro.u42BbDWyaH/
+ Main file repository           : /tmp/asmola/molpro.beXNw2BD0Q/
 
  id        : uclcc
 
@@ -15,7 +15,7 @@
  default implementation of scratch files=df  
 
 
- Variables initialized (1015), CPU time= 0.01 sec
+ Variables initialized (1015), CPU time= 0.00 sec
  ***,Methanol Ground State Energy with CCSD and aug-cc-pVTZ
  memory,500,m;
  
@@ -51,6 +51,8 @@
  
  do i = 0, 360, 2.5
      ahh1 = i
+     ahh2 = i + 120
+     ahh3 = i + 240
  
      geometry={angstrom
      c
@@ -73,7 +75,7 @@
  enddo
  
  Commands initialized (818), CPU time= 0.01 sec, 672 directives.
- Default parameters read. Elapsed time= 0.06 sec
+ Default parameters read. Elapsed time= 0.05 sec
 
  Checking input...
  Passed
@@ -87,7 +89,7 @@
 
  **********************************************************************************************************************************
  LABEL *   Methanol Ground State Energy with CCSD and aug-cc-pVTZ                        
-  (14 PROC) 64 bit serial version                                                        DATE: 20-Feb-25          TIME: 12:48:59  
+  (14 PROC) 64 bit serial version                                                        DATE: 20-Feb-25          TIME: 12:49:18  
  **********************************************************************************************************************************
 
  SHA1:             31073afc4d8441e10870424e0d77336a33bc4286
@@ -197,8 +199,8 @@
 
  Memory used in sort:      16.56 MW
 
- SORT1 READ    90126720. AND WROTE    72736619. INTEGRALS IN    210 RECORDS. CPU TIME:     0.73 SEC, REAL TIME:     1.07 SEC
- SORT2 READ    72736619. AND WROTE    73489255. INTEGRALS IN   1471 RECORDS. CPU TIME:     0.79 SEC, REAL TIME:     1.03 SEC
+ SORT1 READ    90126720. AND WROTE    72736619. INTEGRALS IN    210 RECORDS. CPU TIME:     0.75 SEC, REAL TIME:     1.06 SEC
+ SORT2 READ    72736619. AND WROTE    73489255. INTEGRALS IN   1471 RECORDS. CPU TIME:     0.81 SEC, REAL TIME:     1.03 SEC
 
  FILE SIZES:   FILE 1:   416.6 MBYTE,  FILE 4:   880.8 MBYTE,   TOTAL:   1297.4 MBYTE
 
@@ -213,8 +215,8 @@
                                            T        V       H0       H01     AOSYM     SMH    MOLCAS    ERIS     OPER   
 
  PROGRAMS   *        TOTAL       INT
- CPU TIMES  *        14.41     14.30
- REAL TIME  *         6.51 SEC
+ CPU TIMES  *        14.50     14.38
+ REAL TIME  *         6.58 SEC
  DISK USED  *         1.21 GB
  **********************************************************************************************************************************
 
@@ -230,10 +232,91 @@
  Level shifts:    0.00 (CLOSED)    0.00 (OPEN)    0.30 (GAP_MIN)
 
  ITER           ETOT              DE          GRAD        DDIFF     DIIS  NEXP   TIME(IT)  TIME(TOT)  DIAG
-   1     -115.05452056    -115.05452056     0.00D+00     0.63D-01     0     0       1.34      2.57    start
-   2     -115.08267745      -0.02815688     0.65D-02     0.73D-02     1     0       1.29      3.86    diag
-   3     -115.09007037      -0.00739292     0.36D-02     0.23D-02     2     0       1.29      5.15    diag
-   4     -115.09058515      -0.00051479     0.69D-03     0.64D-03     3     0       1.28      6.43    diag
-   5     -115.09061528      -0.00003013     0.13D-03     0.14D-03     4     0       1.26      7.69    diag
-   6     -115.09061651      -0.00000123     0.24D-04     0.37D-04     5     0       1.29      8.98    diag
-   7     -115.09061655      -0.00000004     0.46D-05     0.72D-05     6     0       1.29     10.27    diag
+   1     -115.05452056    -115.05452056     0.00D+00     0.63D-01     0     0       1.48      2.75    start
+   2     -115.08267745      -0.02815688     0.65D-02     0.73D-02     1     0       1.29      4.04    diag
+   3     -115.09007037      -0.00739292     0.36D-02     0.23D-02     2     0       1.29      5.33    diag
+   4     -115.09058515      -0.00051479     0.69D-03     0.64D-03     3     0       1.39      6.72    diag
+   5     -115.09061528      -0.00003013     0.13D-03     0.14D-03     4     0       1.29      8.01    diag
+   6     -115.09061651      -0.00000123     0.24D-04     0.37D-04     5     0       1.46      9.47    diag
+   7     -115.09061655      -0.00000004     0.46D-05     0.72D-05     6     0       1.29     10.76    diag
+   8     -115.09061655      -0.00000000     0.11D-05     0.16D-05     7     0       1.31     12.07    fixocc
+   9     -115.09061655      -0.00000000     0.38D-06     0.52D-06     8     0       1.28     13.35    diag
+  10     -115.09061655      -0.00000000     0.91D-07     0.10D-06     0     0       1.52     14.87    diag/orth
+
+ Final occupancy:   7   2
+
+ !RHF STATE 1.1 Energy               -115.090616553502
+  RHF One-electron energy            -236.830544603855
+  RHF Two-electron energy              81.443316580855
+  RHF Kinetic energy                  114.922494486459
+  RHF Nuclear energy                   40.296611469498
+  RHF Virial quotient                  -1.001462916967
+
+ !RHF STATE 1.1 Dipole moment           0.00000000     0.61316781    -0.39311236
+ Dipole moment /Debye                   0.00000000     1.55851712    -0.99919196
+
+ Orbital energies:
+
+           1.1          2.1          3.1          4.1          5.1          6.1          7.1          8.1          9.1
+    -20.557225   -11.271641    -1.356714    -0.926444    -0.692174    -0.594838    -0.503893     0.028140     0.042852
+
+           1.2          2.2          3.2          4.2
+     -0.619112    -0.449920     0.050409     0.121329
+
+
+ HOMO      2.2    -0.449920 =     -12.2429eV
+ LUMO      8.1     0.028140 =       0.7657eV
+ LUMO-HOMO         0.478059 =      13.0087eV
+
+ Orbitals saved in record  2100.2
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      19      336.38       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1300     1700   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    ERIS     OPER   
+
+              2       4        0.71       700     1000      520     2100   
+                                         GEOM     BASIS   MCVARS     RHF  
+
+ PROGRAMS   *        TOTAL    HF-SCF       INT
+ CPU TIMES  *        29.40     14.89     14.38
+ REAL TIME  *        11.25 SEC
+ DISK USED  *         1.21 GB
+ **********************************************************************************************************************************
+
+
+ PROGRAM * CCSD (Closed-shell coupled cluster)     Authors: C. Hampel, H.-J. Werner, 1991, M. Deegan, P.J. Knowles, 1992
+
+
+ Convergence thresholds:  THRVAR = 1.00D-12  THRDEN = 1.00D-08
+
+ Number of core orbitals:           2 (   2   0 )
+ Number of closed-shell orbitals:   7 (   5   2 )
+ Number of external orbitals:     175 ( 108  67 )
+
+ Molecular orbitals read from record     2100.2  Type=RHF/CANONICAL  
+
+ Number of N-1 electron functions:               7
+ Number of N-2 electron functions:              28
+ Number of singly external CSFs:               674
+ Number of doubly external CSFs:            379551
+ Total number of CSFs:                      380226
+
+ Length of J-op  integral file:               0.00 MB
+ Length of K-op  integral file:               1.27 MB
+ Length of 3-ext integral record:             0.00 MB
+
+ Integral transformation finished. Total CPU:  10.62 sec, npass=  1  Memory used:   8.42 MW
+
+ Reference energy:                   -115.09061655
+
+ MP2 singlet pair energy:              -0.28678876
+ MP2 triplet pair energy:              -0.14999487
+ MP2 correlation energy:               -0.43678363
+ MP2 total energy:                   -115.52740018
+
+ SCS-MP2 correlation energy:           -0.43747666   (PS=  1.200000  PT=  0.333333)
+ SCS-MP2 total energy:               -115.52809321

@@ -1,0 +1,71 @@
+
+ PROGRAM * ALASKA (Gradient of the energy)     Author: R. Lindh
+
+
+ CCSD Gradient info restored from record   55555.1
+
+ Number of core orbitals:           2 (   2   0 )
+ Number of closed-shell orbitals:   7 (   5   2 )
+ Number of external orbitals:     175 ( 108  67 )
+
+ Integral thresholds in T2TRAN:            1.0D-10 (PROD)
+
+ Available memory for Transformation: 497363190 words
+ Memory needed for incore algorithm:    5963754 words
+ Minimum memory needed:                 2459558 words
+
+ Memory used for transformation:           9.04 MW
+ Available memory for gradients:         490.32 MW
+
+ CPU for transformation:                  56.92 sec
+ CPU for integrals and gradient:          70.98 sec
+ Total CPU:                              127.90 sec
+
+ Prescreening statistics:
+ ========================
+
+ Total number of shell quadruplets:        1.18D+04
+ Number of shell quadruplets processed:    1.18D+04 (100.00%)
+
+ CCSD GRADIENT FOR STATE 1.1
+
+ Atom          dE/dx               dE/dy               dE/dz
+
+   1         0.000000000        -0.012065515        -0.002504726
+   2         0.000000000         0.013572012         0.001577833
+   3         0.000000000        -0.002060339         0.001796203
+   4         0.000000000         0.001220020        -0.009484751
+   5         0.000304511        -0.000333089         0.004307721
+   6        -0.000304511        -0.000333089         0.004307721
+
+ Nuclear force contribution to virial =         0.004015762
+ Reading points 1 to 1 from record 700.2,  wavefunction type=CCSD            
+
+ Making model hessian for Z-matrix coordinates
+ No hessian update for point  1
+
+ Entering Rational Function Geometry Optimization
+
+ Optimization point 1
+
+ Variable                      Last           Current        Next           Gradient       Hessian
+
+ E(CCSD) / Hartree           0.00000000  -115.54524902  -115.54668649
+ RCO / ANGSTROM              0.00000000     1.42350566     1.42114542     0.00512783     2.21229512
+ ROH / ANGSTROM              0.00000000     0.95570290     0.95701890    -0.00233371     2.55559470
+ ACOH / DEGREE               0.00000000   108.79667944   107.57429500     0.00007686     0.00007279
+ RCH1 / ANGSTROM             0.00000000     1.09101854     1.08841082     0.00557247     1.72490824
+ AOCH1 / DEGREE              0.00000000   112.02817953   110.02817953     0.00032734     0.00007333
+ AHH1 / DEGREE               0.00000000   180.00000000   180.00000000     0.00000000     0.00000000
+ RCH2 / ANGSTROM             0.00000000     1.09071271     1.09224074    -0.00326991     1.72864104
+ AOCH2 / DEGREE              0.00000000   109.48013874   111.48013874    -0.00014281     0.00007098
+ RCH3 / ANGSTROM             0.00000000     1.09071271     1.09231124    -0.00326991     1.72864104
+ AOCH3 / DEGREE              0.00000000   109.48013874   111.48013874    -0.00014281     0.00007098
+ AHH3 / DEGREE               0.00000000   420.00000000   422.00000000    -0.00000260     0.00005045
+ Convergence:                0.00000000  (line search)     0.07346339     0.02299258  (total)
+
+ Prototype coordinates
+              1             2             3             4             5             6
+    1     0.0020378     0.0027002    -0.0419379     0.0520468     1.6397068    -1.7169613
+    2     0.0244302    -0.1248759     1.5656116    -1.8651792     1.0681309     0.9225177
+    3    -1.3736838     1.3077381     1.9487878    -2.1844210    -2.0729501    -2.0802777

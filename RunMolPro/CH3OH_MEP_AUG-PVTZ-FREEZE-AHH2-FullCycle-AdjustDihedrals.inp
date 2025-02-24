@@ -1,0 +1,71 @@
+***, Methanol Ground State Energy with CCSD and aug-cc-pVTZ
+memory,500,m;
+
+symmetry,nosym
+geometry={angstrom
+c 
+o , 1, rco 
+h , 2, roh, 1, acoh
+h1, 1, rch1, 2, aoch1  3  ahh1
+h2, 1, rch2, 2, aoch2, 3, ahh2
+h3, 1, rch3, 2, aoch3, 3, ahh3
+}
+
+rco=     1.42350566
+roh=     0.95570290
+rch1=    1.09101854
+rch2=    1.09071271
+rch3=    1.09071271
+acoh=  108.79667944
+aoch1= 112.02817953
+aoch2= 109.48013874
+aoch3= 109.48013874
+ahh1=    0.00000000
+ahh2=  120.37911985
+ahh3=  239.62088015
+
+
+basis=aug-cc-pVTZ
+
+hf
+ccsd
+runccsd = {hf;ccsd}
+
+
+do i = 0, 360, 5
+    rco=     1.42350566
+    roh=     0.95570290
+    rch1=    1.09000000
+    rch2=    1.09000000
+    rch3=    1.09000000
+    acoh=  108.79667944
+    aoch1= 110.00000000
+    aoch2= 110.00000000
+    aoch3= 110.00000000
+    ahh1 = i
+    ahh2 = i + 120
+    ahh3 = i + 240
+    
+    symmetry,nosym
+    geometry={angstrom
+    c 
+    o , 1, rco 
+    h , 2, roh, 1, acoh
+    h1, 1, rch1, 2, aoch1  3  ahh1
+    h2, 1, rch2, 2, aoch2, 3, ahh2
+    h3, 1, rch3, 2, aoch3, 3, ahh3
+    }
+
+    {OPTG,procedure=runccsd,savexyz=CH3OH_maxima_mp2.xyz
+    active,rco,roh,rch1,rch2,rch3,acoh,aoch1,aoch2,aoch3,ahh2,ahh3;
+    END}
+    
+    xxx = "mmm"
+    tau = (ahh1 + ahh2 + ahh3)/3
+    table,xxx,rco,roh,rch1,rch2,rch3,acoh,aoch1,aoch2,aoch3,ahh1,ahh2,ahh3,tau
+    DIGITS, 0, 8, 8, 8, 8, 8, 8, 8, 8, 8,  8,  8,  8, 8
+
+enddo
+
+
+--- End of Script ---

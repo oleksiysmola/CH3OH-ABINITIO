@@ -75,7 +75,7 @@ Subscript[T, 23], Subscript[T, 13]};
 (* Setup Coefficients *)
 maxFourierMode = 2;
 maxOrder = 6;
-maxMultiMode = 3;
+maxMultiMode = 5;
 numberOfRigidModes = 8;
 (* 0th Order *)
 zeroOrderCoefficients = ConstantArray[0, maxFourierMode + 1];
