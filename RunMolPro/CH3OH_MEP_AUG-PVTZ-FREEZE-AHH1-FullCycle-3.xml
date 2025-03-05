@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<molpro xmlns="http://www.molpro.net/schema/molpro-output"
+  xmlns:xsd="http://www.w3.org/1999/XMLSchema"
+  xmlns:cml="http://www.xml-cml.org/schema"
+  xmlns:stm="http://www.xml-cml.org/schema"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <job>
+  <jobstep command="HF-SCF" commandset="SCFPRO">
+   <cml:molecule>
+    <cml:symmetry pointGroup="Cs">
+     <cml:transform3 title="generator" id="X">
+      -1  0  0  0  0  1  0  0  0  0  1  0  0  0  0  1
+     </cml:transform3>
+    </cml:symmetry>
+    <cml:atomArray>
+     <cml:atom id="a1" elementType="C" x3="0.0" y3="0.108857311793637E-01"
+       z3="-0.747610466308432"/>
+     <cml:atom id="a2" elementType="O" x3="0.0" y3="-0.702315380507411E-01"
+       z3="0.750194590644125"/>
+     <cml:atom id="a3" elementType="H" x3="0.0" y3="0.849590208179837" z3="1.14253112368856"/>
+     <cml:atom id="a4" elementType="H" x3="-1.17732835083209" y3="-0.633568822790944"
+       z3="-1.41736884228735"/>
+     <cml:atom id="a5" elementType="H" x3="0.0" y3="1.40263975707752" z3="-1.30709302313776"/>
+     <cml:atom id="a6" elementType="H" x3="1.17732835083209" y3="-0.633568822790944"
+       z3="-1.41736884228735"/>
+    </cml:atomArray>
+    <cml:bondArray>
+     <cml:bond atomRefs2="a1 a2"/>
+     <cml:bond atomRefs2="a2 a3"/>
+    </cml:bondArray>
+   </cml:molecule>
+   <property name="Energy" method="RHF" principal="true" stateSymmetry="1" stateNumber="1"
+     value="-114.896362421249"/>
+   <property name="One-electron energy" method="RHF" value="-226.720135679189"/>
+   <property name="Two-electron energy" method="RHF" value="76.5343003548766"/>
+   <property name="Kinetic energy" method="RHF" value="113.552977631985"/>
+   <property name="Nuclear energy" method="RHF" value="35.2894729030635"/>
+   <property name="Virial quotient" method="RHF" value="-1.01183046730502"/>
+   <property name="Dipole moment" method="RHF" principal="true" stateSymmetry="1"
+     stateNumber="1" value="0.0 0.600472104902059 -0.212714526450874"/>
+   <time start="10:36:42" end="10:36:55" cpu="33.87" system="1.58" real="13.92"/>
+   <storage units="megabyte" memory="0.0" sf="0.0" df="1221.4" eaf="0.0"/>
+   <summary overall_method="HF/aug-cc-pVTZ"/>
+  </jobstep>
+  <jobstep command="CCSD" commandset="CCSD">
+   <property name="energy" method="Reference" stateSymmetry="1" stateNumber="1"
+     value="-114.896362421249"/>
+   <property name="correlation energy" method="MP2" stateSymmetry="1" stateNumber="1"
+     value="-0.461498512377598"/>
+   <property name="total energy" method="MP2" stateSymmetry="1" stateNumber="1"
+     value="-115.357860933626"/>
+   <property name="energy" method="Reference" stateSymmetry="1" stateNumber="1"
+     value="-114.896362421249"/>
+   <property name="correlation energy" method="CCSD" stateSymmetry="1" stateNumber="1"
+     value="-0.482063000493469"/>
+   <property name="total energy" method="CCSD" principal="true" stateSymmetry="1"
+     stateNumber="1" value="-115.378425421742"/>
+   <property name="Dipole moment" method="CCSD" principal="true" stateSymmetry="1"
+     stateNumber="1" value="0.0 0.573386043213019 -0.201680995871691"/>
+   <time start="10:36:55" end="10:38:10" cpu="436.02" system="28.06" real="74.33"/>
+   <storage units="megabyte" memory="0.0" sf="0.0" df="1221.4" eaf="0.0"/>
+   <summary overall_method="CCSD/aug-cc-pVTZ"/>
+  </jobstep>
+  <jobstep command="OPTG" commandset="OPT">
+   <jobstep command="HF-SCF" commandset="SCFPRO">
+    <property name="Energy" method="RHF" principal="true" stateSymmetry="1" stateNumber="1"
+      value="-114.896362421251"/>
+    <property name="One-electron energy" method="RHF" value="-226.72013421815"/>
+    <property name="Two-electron energy" method="RHF" value="76.5342988938354"/>
+    <property name="Kinetic energy" method="RHF" value="113.552975551853"/>
+    <property name="Nuclear energy" method="RHF" value="35.2894729030635"/>
+    <property name="Virial quotient" method="RHF" value="-1.01183048584037"/>
+    <property name="Dipole moment" method="RHF" principal="true" stateSymmetry="1"
+      stateNumber="1" value="0.0 0.600471421805704 -0.212713803224295"/>
+    <time start="10:38:10" end="10:38:11" cpu="3.72" system="0.1" real="1.13"/>
+    <storage units="megabyte" memory="0.0" sf="0.0" df="1221.4" eaf="0.0"/>
+    <summary overall_method="CCSD/aug-cc-pVTZ"/>
+   </jobstep>
+   <jobstep command="CCSD" commandset="CCSD">
+    <property name="energy" method="Reference" stateSymmetry="1" stateNumber="1"
+      value="-114.896362421251"/>
+    <property name="correlation energy" method="MP2" stateSymmetry="1" stateNumber="1"
+      value="-0.461498528863088"/>
+    <property name="total energy" method="MP2" stateSymmetry="1" stateNumber="1"
+      value="-115.357860950114"/>
+    <property name="energy" method="Reference" stateSymmetry="1" stateNumber="1"
+      value="-114.896362421251"/>
+    <property name="correlation energy" method="CCSD" stateSymmetry="1" stateNumber="1"
+      value="-0.482062993407702"/>
+    <property name="total energy" method="CCSD" principal="true" stateSymmetry="1"
+      stateNumber="1" value="-115.378425414659"/>
+    <property name="Dipole moment" method="CCSD" principal="true" stateSymmetry="1"
+      stateNumber="1" value="0.0 0.573385444065906 -0.201680355253646"/>
+    <time start="10:38:11" end="10:39:08" cpu="350.45" system="13.11" real="57.51"/>
+    <storage units="megabyte" memory="0.0" sf="0.0" df="1221.4" eaf="0.0"/>
+    <summary overall_method="CCSD/aug-cc-pVTZ"/>
+   </jobstep>
+   <gradient name="CCSD GRADIENT" stateSymmetry="1" stateNumber="1"
+     virial="1.07013958486877">
+      0.000000000000  -0.011487509875   0.059789787646
+      0.000000000000  -0.026226887367   0.051359816689
+      0.000000000000   0.030610050482   0.022676090034
+     -0.070703739920  -0.038534362339  -0.047760010587
+      0.000000000000   0.084173071437  -0.038305673196
+      0.070703739920  -0.038534362339  -0.047760010587
+   </gradient>
+   <opt energy="-115.37842541" type="CCSD" line="0.0" convergence="0.296054732297743"
+     gradient="0.184208672616874"/>
+   <error type="Error" location="zmatrix.f:zmat_orient" message="Symmetry problem"/>
+  </jobstep>
+  <stm:metadataList>
+   <stm:metadata name="dc:date" content="2025-02-26T10:39:29+00:00"/>
+   <stm:metadata name="dc:creator" content="asmola"/>
+   <stm:metadata name="cmlm:insilico" content="Molpro"/>
+  </stm:metadataList>
+  <platform>
+   <version major="2022" minor="1" SHA="31073afc4d8441e10870424e0d77336a33bc4286"
+     integer_bits="64" parallelism="serial">
+    2022.1
+    <date year="2025" month="2" day="26" hour="10" minute="36" second="42">
+     2025-02-26T10:36:42
+    </date>
+   </version>
+   <licence id="uclcc"/>
+   <parallel processes="1" nodes="1" all_processes="1" openmp="8"/>
+   <dimensions natom="400" nvalence="500" nvalence_pno="1000" nbasis="12000" nstate="100"
+     nsymm="16" nrec="512" nprim="2" ncol="100"/>
+  </platform>
+  <input>
+   <p>***,Methanol Ground State Energy with CCSD and aug-cc-pVTZ</p>
+   <p> memory,500,m;</p>
+   <p> geometry={angstrom</p>
+   <p> c</p>
+   <p> o , 1, rco</p>
+   <p> h , 2, roh, 1, acoh</p>
+   <p> h1, 1, rch1, 2, aoch1  3  ahh1</p>
+   <p> h2, 1, rch2, 2, aoch2, 3, ahh2</p>
+   <p> h3, 1, rch3, 2, aoch3, 3, ahh3</p>
+   <p> }</p>
+   <p>rco=     1.50000000</p>
+   <p>roh=     1.00000000</p>
+   <p>rch1=    1.50000000</p>
+   <p>rch2=    1.50000000</p>
+   <p>rch3=    1.50000000</p>
+   <p>acoh=  110.00000000</p>
+   <p>aoch1= 115.00000000</p>
+   <p>aoch2= 115.00000000</p>
+   <p>aoch3= 115.00000000</p>
+   <p>ahh1= -120.00000000</p>
+   <p>ahh2=    0.00000000</p>
+   <p>ahh3=  120.00000000</p>
+   <p>basis=aug-cc-pVTZ</p>
+   <p>hf</p>
+   <p>ccsd</p>
+   <p>runccsd = {hf;ccsd}</p>
+   <p>{OPTG,procedure=runccsd,savexyz=CH3OH_maxima_mp2.xyz</p>
+   <p>active,rco,roh,rch1,rch2,rch3,acoh,aoch1,aoch2,aoch3,ahh2,ahh3;</p>
+   <p>END}</p>
+   <p>xxx = "mmm"</p>
+   <p>tau = (ahh1 + ahh2 + ahh3)/3</p>
+   <p>table,xxx,rco,roh,rch1,rch2,rch3,acoh,aoch1,aoch2,aoch3,ahh1,ahh2,ahh3,tau</p>
+   <p>DIGITS, 0, 8, 8, 8, 8, 8, 8, 8, 8, 8,  8,  8,  8, 8</p>
+   <p> do i = -117.5, 240, 2.5</p>
+   <p>     rco=     1.50000000</p>
+   <p>     roh=     1.00000000</p>
+   <p>     rch1=    1.50000000</p>
+   <p>     rch2=    1.50000001</p>
+   <p>     rch3=    1.50000002</p>
+   <p>     acoh=  110.00000000</p>
+   <p>     aoch1= 115.00000000</p>
+   <p>     aoch2= 115.00000001</p>
+   <p>     aoch3= 115.00000002</p>
+   <p>     ahh1 = i</p>
+   <p>     ahh2 = i + 120</p>
+   <p>     ahh3 = i + 240</p>
+   <p>     geometry={angstrom</p>
+   <p>     c</p>
+   <p>     o , 1, rco</p>
+   <p>     h , 2, roh, 1, acoh</p>
+   <p>     h1, 1, rch1, 2, aoch1  3  ahh1</p>
+   <p>     h2, 1, rch2, 2, aoch2, 3, ahh2</p>
+   <p>     h3, 1, rch3, 2, aoch3, 3, ahh3</p>
+   <p>     }</p>
+   <p>     {OPTG,procedure=runccsd,savexyz=CH3OH_maxima_mp2.xyz</p>
+   <p>     active,rco,roh,rch1,rch2,rch3,acoh,aoch1,aoch2,aoch3,ahh2,ahh3;</p>
+   <p>     END}</p>
+   <p>     xxx = "mmm"</p>
+   <p>     tau = (ahh1 + ahh2 + ahh3)/3</p>
+   <p>     table,xxx,rco,roh,rch1,rch2,rch3,acoh,aoch1,aoch2,aoch3,ahh1,ahh2,ahh3,tau</p>
+   <p>     DIGITS, 0, 8, 8, 8, 8, 8, 8, 8, 8, 8,  8,  8,  8, 8</p>
+   <p> enddo</p>
+  </input>
+  <diagnostics warnings="0"/>
+ </job>
+</molpro>
