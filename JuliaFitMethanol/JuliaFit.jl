@@ -82,18 +82,19 @@ for i in 1:numberOfLinearParameters
 end
 
 allParameters::Vector{Float64} = vcat(structuralParameters, linearParameters)
+allParametersOn::Vector{Int64} = vcat(structuralParametersOn, linearParametersOn)
 
 gridBlock::Vector{String} = inputBlocks[3][2:end]
 numberOfGridPoints::Int64 = size(gridBlock)[1] 
 gridBlockSplit::Vector{Vector{SubString{String}}} = split.(gridBlock, r"\s+")
 
-grid::Matrix{Float64} = zeros(numberOfGridPoints, numberOfModes)
-gridInternalCoordinates::Matrix{Float64} = zeros(numberOfGridPoints, numberOfModes)
+grid::Vector{Vector{Float64}} = []
+gridInternalCoordinates::Vector{Vector{Float64}} = []
 energies::Vector{Float64} = zeros(numberOfGridPoints)
 
 for i in 1:numberOfGridPoints
-    grid[i, :] = parse.(Float64, gridBlockSplit[i][1:numberOfModes])
-    gridInternalCoordinates[i, :] = defineInternalCoordinates(grid[i, :])
+    push!(grid, parse.(Float64, gridBlockSplit[i][1:numberOfModes]))
+    push!(gridInternalCoordinates, defineInternalCoordinates(grid[i]))
     energies[i] = parse(Float64, gridBlockSplit[i][numberOfModes+1])
 end
 
@@ -103,6 +104,19 @@ minimumEnergy = minimum(energies)
 println()
 @printf("%12.10f \n", minimumEnergy)
 energies = energies.-minimumEnergy
+
+# Weight factor by Partridge and Schwenke
+function computeWeightOfPoint(energy::Float64, energyThreshold=15000.0::Float64)::Float64
+    weight::Float64 = (tanh(−0.0006*(energy - energyThreshold)) + 1.002002002)/2.002002002
+    if energy > 10000.0
+        weight = weight/(0.0001*energy)
+    else
+        weight = weight/(0.0001*10000.0)
+    end
+    return weight
+end
+
+weights::Vector{Float64} = computeWeightOfPoint.(energies)
 
 
 # CH3OH
@@ -179,12 +193,17 @@ function potentialEnergy(internalCoordinates::Vector{Float64}, parameters::Vecto
     potential /= 6
 end
 
-# computePotentialEnergy::Function = (zMatrixCoordinates, parameters) -> 
-# println(zMatrixCoordinates)
-# println(parameters)
-# numberOfParametersRCO::Int64 = sum(occursin.(r"rCO", structuralParameterLabels))
-# return zMatrixCoordinates, parameters
+# Here we define a function which ensures those not currently in the fit are unchanged
+function potentialEnergyFilterParams(internalCoordinates::Vector{Float64}, parameters::Vector{Float64})::Float64
+    parameters = [allParametersOn[i] == 1 ? parameters[sum(allParametersOn[1:i])] : allParameters[i] for i in 1:length(allParametersOn)]
+    return potentialEnergy(internalCoordinates::Vector{Float64}, parameters::Vector{Float64})
+end
 
+# curve_fit(potentialEnergyFilterParams, gridInternalCoordinates[1:19], energies[1:19], weights[1:19], allParameters)
+
+# urve_fit((xiPowers, expansionParameters) -> potentialEnergyModel(xiPowers, expansionParameters),
+#     (xiPowers, expansionParameters) -> derivatives(xiPowers, expansionParameters),
+#     xiPowers, energies, weights, expansionParameters)
 
 
 
