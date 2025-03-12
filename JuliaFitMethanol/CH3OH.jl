@@ -2,7 +2,7 @@ function defineSymmetryOperations(case="C3v(M)"::String)::Array{Float64}
     if case == "C3v(M)"
         symmetryOperations::Array{Float64} = zeros(Int64, 6, 11, 11)
         symmetryOperations[1, :, :] = Matrix(1I, 11, 11)
-        # (123)
+        # (132)
         symmetryOperations[2, :, :] = [
             1 0 0 0 0 0 0 0 0 0 0;
             0 1 0 0 0 0 0 0 0 0 0;
@@ -16,7 +16,7 @@ function defineSymmetryOperations(case="C3v(M)"::String)::Array{Float64}
             0 0 0 0 0 0 0 0 0 -1/2 sqrt(3)/2;
             0 0 0 0 0 0 0 0 0 -sqrt(3)/2 -1/2;            
             ]
-        # (132)
+        # (123)
         symmetryOperations[3, :, :] = [
             1 0 0 0 0 0 0 0 0 0 0;
             0 1 0 0 0 0 0 0 0 0 0;

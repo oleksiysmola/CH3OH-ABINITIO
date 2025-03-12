@@ -42,7 +42,7 @@
    <property name="Dipole moment" method="RHF" principal="true" stateSymmetry="1"
      stateNumber="1"
      value="0.954539053750003E-02 0.518589816169594 0.370731382501436"/>
-   <time start="14:42:24" end="14:47:01" cpu="1474.28" system="40.0" real="277.65"/>
+   <time start="15:36:30" end="15:41:40" cpu="1511.99" system="39.0" real="310.5"/>
    <storage units="megabyte" memory="0.0" sf="0.0" df="22251.48" eaf="0.0"/>
    <summary overall_method="HF/cc-pVQZ-F12"/>
   </jobstep>
@@ -67,7 +67,7 @@
      stateNumber="1" value="-0.4785377430297"/>
    <property name="total energy" method="MP2-F12/3C(F)" principal="true" stateSymmetry="1"
      stateNumber="1" value="-115.268291480648"/>
-   <time start="14:47:01" end="14:47:29" cpu="143.12" system="2.5" real="27.75"/>
+   <time start="15:41:40" end="15:42:09" cpu="149.69" system="2.61" real="29.13"/>
    <storage units="megabyte" memory="0.0" sf="0.0" df="22251.48" eaf="0.0"/>
    <summary overall_method="MP2-F12/cc-pVQZ-F12"/>
   </jobstep>
@@ -128,7 +128,7 @@
      value="-115.288680967138"/>
    <property name="total energy" method="CCSD(T)-F12b" principal="true" stateSymmetry="1"
      stateNumber="1" value="-115.288825105099"/>
-   <time start="14:47:29" end="14:54:18" cpu="2852.51" system="36.49" real="409.18"/>
+   <time start="15:42:09" end="15:49:44" cpu="3177.08" system="38.6" real="455.03"/>
    <storage units="megabyte" memory="0.0" sf="0.0" df="22251.48" eaf="0.0"/>
    <summary overall_method="CCSD(T)-F12/cc-pVQZ-F12"/>
   </jobstep>
@@ -137,7 +137,7 @@
 <tr><td>"MMM"</td><td>   1.00000000</td><td>   0.90000000</td><td>   1.20000000</td><td>   1.00000000</td><td>   1.10000000</td><td>   100.00000000</td><td>   110.00000000</td><td>   112.00000000</td><td>   108.00000000</td><td>   1.13137085</td><td>   118.94441663</td><td>   239.92421252</td><td>   -115.29300566</td><td>   1.0000</td></tr>
 </tbody></table>
   <stm:metadataList>
-   <stm:metadata name="dc:date" content="2024-11-30T14:54:19+00:00"/>
+   <stm:metadata name="dc:date" content="2025-03-10T15:49:45+00:00"/>
    <stm:metadata name="dc:creator" content="asmola"/>
    <stm:metadata name="dc:title"
      content="Methanol Ground State Energy with CCSD(T)-F12 and cc-pVQZ-F12"/>
@@ -147,8 +147,8 @@
    <version major="2022" minor="1" SHA="31073afc4d8441e10870424e0d77336a33bc4286"
      integer_bits="64" parallelism="serial">
     2022.1
-    <date year="2024" month="11" day="30" hour="14" minute="42" second="24">
-     2024-11-30T14:42:24
+    <date year="2025" month="3" day="10" hour="15" minute="36" second="30">
+     2025-03-10T15:36:30
     </date>
    </version>
    <licence id="uclcc"/>
