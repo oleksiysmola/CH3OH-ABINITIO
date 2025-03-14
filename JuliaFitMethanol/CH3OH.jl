@@ -88,6 +88,12 @@ symmetryOperationsTau::Vector{Function} = [
 function defineInternalCoordinates(zMatrixCoordinates::Vector{Float64})::Vector{Float64}
     internalCoordinates::Vector{Float64} = zMatrixCoordinates
     convertToRadians::Float64 = pi/180
+
+    # Convert bends to radians
+    internalCoordinates[6] = internalCoordinates[6]*convertToRadians
+    internalCoordinates[7] = internalCoordinates[7]*convertToRadians
+    internalCoordinates[8] = internalCoordinates[8]*convertToRadians
+    internalCoordinates[9] = internalCoordinates[9]*convertToRadians
     
     # Symmeterised dihedrals
     d23::Float64 = zMatrixCoordinates[12] - zMatrixCoordinates[11]
