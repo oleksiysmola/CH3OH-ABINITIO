@@ -108,7 +108,7 @@ function obtainCoordinateMEP(tau::Float64, powersMEP::Matrix{Int64}, parametersM
         if powersMEP[i, 12] >= 0
             coordinateMEP += parametersMEP[i]*cos(powersMEP[i, 12]*tau)
         else
-            coordinateMEP += parametersMEP[i]*sin(powersMEP[i, 12]*tau)
+            coordinateMEP += parametersMEP[i]*sin(-powersMEP[i, 12]*tau)
         end
     end
     return coordinateMEP

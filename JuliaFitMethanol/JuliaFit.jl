@@ -191,7 +191,7 @@ function potentialEnergy(internalCoordinates::Vector{Float64}, parameters::Vecto
             if linearPowers[j - parameterLowerRange + 1, end] >= 0
                 potential += cos(linearPowers[j - parameterLowerRange + 1, end]*tau)*prod(xiTransformed.^linearPowers[j - parameterLowerRange + 1, 1:end-1])*parameters[j]
             else
-                potential += sin(linearPowers[j - parameterLowerRange + 1, end]*tau)*prod(xiTransformed.^linearPowers[j - parameterLowerRange + 1, 1:end-1])*parameters[j]
+                potential += sin(-linearPowers[j - parameterLowerRange + 1, end]*tau)*prod(xiTransformed.^linearPowers[j - parameterLowerRange + 1, 1:end-1])*parameters[j]
             end
         end
     end
@@ -200,7 +200,7 @@ end
 
 # Here we define a function which ensures parameters not currently in the fit are unchanged
 function potentialEnergyFilterParams(gridInternalCoordinates::Matrix{Float64}, parameters::Vector{Float64})::Vector{Float64}
-    parameters = [allParametersOn[i] == 1 ? parameters[i] : allParameters[i] for i in 1:length(allParametersOn)]
+    # parameters = [allParametersOn[i] == 1 ? parameters[i] : allParameters[i] for i in 1:length(allParametersOn)]
     numberOfPoints::Int64 = size(gridInternalCoordinates)[1]
     predictedEnergies::Vector{Float64} = zeros(numberOfPoints)
     for i in 1:numberOfPoints
@@ -209,10 +209,9 @@ function potentialEnergyFilterParams(gridInternalCoordinates::Matrix{Float64}, p
     return predictedEnergies 
 end
 
-function computeJacobian(gridInternalCoordinates::Matrix{Float64}, parameters::Vector{Float64})::Matrix{Float64}
-    numberOfPoints::Int64 = size(gridInternalCoordinates)[1]
+function computeJacobianAtPoint(internalCoordinates::Vector{Float64}, parameters::Vector{Float64})::Vector{Float64}
     numberOfParameters::Int64 = length(parameters)
-    jacobian::Matrix{Float64} = zeros(numberOfPoints, numberOfParameters)
+    derivatives::Vector{Float64} = zeros(numberOfParameters)
     
     # Obtain MEP parameters for each stretch and bend
     parameterLowerRange::Int64 = 1
@@ -281,19 +280,222 @@ function computeJacobian(gridInternalCoordinates::Matrix{Float64}, parameters::V
     symmetryOperations::Array{Float64} = defineSymmetryOperations()
     numberOfSymmetryOperations::Int64 = size(symmetryOperations)[1]
 
-
     for i in 1:numberOfSymmetryOperations
         xiTransformed::Vector{Float64} = symmetryOperations[i, :, :]*xi
+        internalCoordinatesTransformed::Vector{Float64} = symmetryOperations[i, :, :]*internalCoordinates[1:end-1]
         tau::Float64 = symmetryOperationsTau[i](internalCoordinates[12])
+        # Derivatives of CO MEP parameters
+        for j in 1:numberOfParametersRCO
+            if allParametersOn[j] == 1
+                for k in parameterLowerRange:parameterUpperRange
+                    newTerm::Float64 = 0
+                    if linearPowers[k - parameterLowerRange + 1, 1] == 0
+                        continue
+                    end
+                    if powersRCO[j, end] >= 0
+                        newTerm += -morseParameters[1]*linearPowers[k - parameterLowerRange + 1, 1]*exp(-morseParameters[1]*(internalCoordinatesTransformed[1] - obtainCoordinateMEP(tau, powersRCO, parametersRCO)))*xiTransformed[1]^(linearPowers[k - parameterLowerRange + 1, 1] - 1)*prod(xiTransformed[2:end].^linearPowers[k - parameterLowerRange + 1, 2:end-1])*cos(powersRCO[j, end]*tau)
+                    else
+                        newTerm += -morseParameters[1]*linearPowers[k - parameterLowerRange + 1, 1]*exp(-morseParameters[1]*(internalCoordinatesTransformed[1] - obtainCoordinateMEP(tau, powersRCO, parametersRCO)))*xiTransformed[1]^(linearPowers[k - parameterLowerRange + 1, 1] - 1)*prod(xiTransformed[2:end].^linearPowers[k - parameterLowerRange + 1, 2:end-1])*sin(-powersRCO[j, end]*tau)
+                    end
+                    if linearPowers[k - parameterLowerRange + 1, end] >= 0
+                        newTerm *= cos(tau*linearPowers[k - parameterLowerRange + 1, end])
+                    else
+                        newTerm *= sin(-tau*linearPowers[k - parameterLowerRange + 1, end])
+                    end
+                    derivatives[j] += newTerm*parameters[k] 
+                end
+            end
+        end
+        # Derivatives of OH MEP parameters
+        for j in 1:numberOfParametersROH
+            if allParametersOn[j + numberOfParametersRCO] == 1
+                for k in parameterLowerRange:parameterUpperRange
+                    newTerm::Float64 = 0
+                    if linearPowers[k - parameterLowerRange + 1, 2] == 0
+                        continue
+                    end
+                    if powersROH[j, end] >= 0
+                        newTerm += -morseParameters[2]*linearPowers[k - parameterLowerRange + 1, 2]*exp(-morseParameters[2]*(internalCoordinatesTransformed[2] - obtainCoordinateMEP(tau, powersROH, parametersROH)))*xiTransformed[2]^(linearPowers[k - parameterLowerRange + 1, 2] - 1)*xiTransformed[1]^linearPowers[k - parameterLowerRange + 1, 1]*prod(xiTransformed[3:end].^linearPowers[k - parameterLowerRange + 1, 3:end-1])*cos(powersROH[j, end]*tau)
+                    else
+                        newTerm += -morseParameters[2]*linearPowers[k - parameterLowerRange + 1, 2]*exp(-morseParameters[2]*(internalCoordinatesTransformed[2] - obtainCoordinateMEP(tau, powersROH, parametersROH)))*xiTransformed[2]^(linearPowers[k - parameterLowerRange + 1, 2] - 1)*xiTransformed[1]^linearPowers[k - parameterLowerRange + 1, 1]*prod(xiTransformed[3:end].^linearPowers[k - parameterLowerRange + 1, 3:end-1])*sin(-powersROH[j, end]*tau)
+                    end
+                    if linearPowers[k - parameterLowerRange + 1, end] >= 0
+                        newTerm *= cos(tau*linearPowers[k - parameterLowerRange + 1, end])
+                    else
+                        newTerm *= sin(-tau*linearPowers[k - parameterLowerRange + 1, end])
+                    end
+                    derivatives[j + numberOfParametersRCO] += newTerm*parameters[k]  
+                end
+            end
+        end
+        # Derivatives of CH MEP parameters
+        for j in 1:numberOfParametersRCH
+            if allParametersOn[j + numberOfParametersRCO + numberOfParametersROH] == 1
+                for k in parameterLowerRange:parameterUpperRange
+                    newTerm::Float64 = 0
+                    if powersROH[j, end] >= 0
+                        if linearPowers[k - parameterLowerRange + 1, 3] > 0
+                            newTerm += -morseParameters[3]*linearPowers[k - parameterLowerRange + 1, 3]*exp(-morseParameters[3]*(internalCoordinatesTransformed[3] - obtainCoordinateMEP(tau, powersRCH, parametersRCH)))*xiTransformed[3]^(linearPowers[k - parameterLowerRange + 1, 3] - 1)*prod(xiTransformed[1:2].^linearPowers[k - parameterLowerRange + 1, 1:2])*prod(xiTransformed[4:end].^linearPowers[k - parameterLowerRange + 1, 4:end-1])*cos(powersRCH[j, end]*tau)
+                        end
+                        if linearPowers[k - parameterLowerRange + 1, 4] > 0
+                            newTerm += -morseParameters[3]*linearPowers[k - parameterLowerRange + 1, 4]*exp(-morseParameters[3]*(internalCoordinatesTransformed[4] - obtainCoordinateMEP(tau, powersRCH, parametersRCH + 2*pi/3)))*xiTransformed[4]^(linearPowers[k - parameterLowerRange + 1, 4] - 1)*prod(xiTransformed[1:3].^linearPowers[k - parameterLowerRange + 1, 1:3])*prod(xiTransformed[5:end].^linearPowers[k - parameterLowerRange + 1, 5:end-1])*cos(powersRCH[j, end]*(tau + 2*pi/3))
+                        end
+                        if linearPowers[k - parameterLowerRange + 1, 5] > 0
+                            newTerm += -morseParameters[3]*linearPowers[k - parameterLowerRange + 1, 5]*exp(-morseParameters[3]*(internalCoordinatesTransformed[5] - obtainCoordinateMEP(tau, powersRCH, parametersRCH + 4*pi/3)))*xiTransformed[5]^(linearPowers[k - parameterLowerRange + 1, 5] - 1)*prod(xiTransformed[1:4].^linearPowers[k - parameterLowerRange + 1, 1:4])*prod(xiTransformed[6:end].^linearPowers[k - parameterLowerRange + 1, 6:end-1])*cos(powersRCH[j, end]*(tau + 4*pi/3))
+                        end
+                    else
+                        if linearPowers[k - parameterLowerRange + 1, 3] > 0
+                            newTerm += -morseParameters[3]*linearPowers[k - parameterLowerRange + 1, 3]*exp(-morseParameters[3]*(internalCoordinatesTransformed[3] - obtainCoordinateMEP(tau, powersRCH, parametersRCH)))*xiTransformed[3]^(linearPowers[k - parameterLowerRange + 1, 3] - 1)*prod(xiTransformed[1:2].^linearPowers[k - parameterLowerRange + 1, 1:2])*prod(xiTransformed[4:end].^linearPowers[k - parameterLowerRange + 1, 4:end-1])*sin(-powersRCH[j, end]*tau)
+                        end
+                        if linearPowers[k - parameterLowerRange + 1, 4] > 0
+                            newTerm += -morseParameters[3]*linearPowers[k - parameterLowerRange + 1, 4]*exp(-morseParameters[3]*(internalCoordinatesTransformed[4] - obtainCoordinateMEP(tau, powersRCH, parametersRCH + 2*pi/3)))*xiTransformed[4]^(linearPowers[k - parameterLowerRange + 1, 4] - 1)*prod(xiTransformed[1:3].^linearPowers[k - parameterLowerRange + 1, 1:3])*prod(xiTransformed[5:end].^linearPowers[k - parameterLowerRange + 1, 5:end-1])*sin(-powersRCH[j, end]*(tau + 2*pi/3))
+                        end
+                        if linearPowers[k - parameterLowerRange + 1, 5] > 0
+                            newTerm += -morseParameters[3]*linearPowers[k - parameterLowerRange + 1, 5]*exp(-morseParameters[3]*(internalCoordinatesTransformed[5] - obtainCoordinateMEP(tau, powersRCH, parametersRCH + 4*pi/3)))*xiTransformed[5]^(linearPowers[k - parameterLowerRange + 1, 5] - 1)*prod(xiTransformed[1:4].^linearPowers[k - parameterLowerRange + 1, 1:4])*prod(xiTransformed[6:end].^linearPowers[k - parameterLowerRange + 1, 6:end-1])*sin(-powersRCH[j, end]*(tau + 4*pi/3))
+                        end
+                    end
+                    if linearPowers[k - parameterLowerRange + 1, end] >= 0
+                        newTerm *= cos(tau*linearPowers[k - parameterLowerRange + 1, end])
+                    else
+                        newTerm *= sin(-tau*linearPowers[k - parameterLowerRange + 1, end])
+                    end
+                    derivatives[j + numberOfParametersRCO + numberOfParametersROH] += newTerm*parameters[k]
+                end
+            end
+        end
+        # Derivatives of aHOC MEP parameters
+        for j in 1:numberOfParametersAHOC
+            if allParametersOn[j + numberOfParametersRCO + numberOfParametersROH + numberOfParametersRCH] == 1
+                for k in parameterLowerRange:parameterUpperRange
+                    newTerm::Float64 = 0
+                    if linearPowers[k - parameterLowerRange + 1, 6] == 0
+                        continue
+                    end
+                    if powersROH[j, end] >= 0
+                        newTerm += -linearPowers[k - parameterLowerRange + 1, 6]*xiTransformed[6]^(linearPowers[k - parameterLowerRange + 1, 6] - 1)*prod(xiTransformed[1:5].^linearPowers[k - parameterLowerRange + 1, 1:5])*prod(xiTransformed[7:end].^linearPowers[k - parameterLowerRange + 1, 7:end-1])*cos(powersAHOC[j, end]*tau)
+                    else
+                        newTerm += -linearPowers[k - parameterLowerRange + 1, 6]*xiTransformed[6]^(linearPowers[k - parameterLowerRange + 1, 6] - 1)*prod(xiTransformed[1:5].^linearPowers[k - parameterLowerRange + 1, 1:5])*prod(xiTransformed[7:end].^linearPowers[k - parameterLowerRange + 1, 7:end-1])*sin(-powersAHOC[j, end]*tau)
+                    end
+                    if linearPowers[k - parameterLowerRange + 1, end] >= 0
+                        newTerm *= cos(tau*linearPowers[k - parameterLowerRange + 1, end])
+                    else
+                        newTerm *= sin(-tau*linearPowers[k - parameterLowerRange + 1, end])
+                    end
+                    derivatives[j + numberOfParametersRCO + numberOfParametersROH + numberOfParametersRCH] += newTerm*parameters[k]
+                end
+            end
+        end
+        # Derivatives of aHCO MEP parameters
+        for j in 1:numberOfParametersAHCO
+            if allParametersOn[j + numberOfParametersRCO + numberOfParametersROH + numberOfParametersRCH + numberOfParametersAHOC] == 1
+                for k in parameterLowerRange:parameterUpperRange
+                    newTerm::Float64 = 0
+                    if powersROH[j, end] >= 0
+                        if linearPowers[k - parameterLowerRange + 1, 7] > 0
+                            newTerm += -linearPowers[k - parameterLowerRange + 1, 7]*xiTransformed[7]^(linearPowers[k - parameterLowerRange + 1, 7] - 1)*prod(xiTransformed[1:6].^linearPowers[k - parameterLowerRange + 1, 1:6])*prod(xiTransformed[8:end].^linearPowers[k - parameterLowerRange + 1, 8:end-1])*cos(powersAHCO[j, end]*tau)
+                        end
+                        if linearPowers[k - parameterLowerRange + 1, 8] > 0
+                            newTerm += -linearPowers[k - parameterLowerRange + 1, 8]*xiTransformed[8]^(linearPowers[k - parameterLowerRange + 1, 8] - 1)*prod(xiTransformed[1:7].^linearPowers[k - parameterLowerRange + 1, 1:7])*prod(xiTransformed[9:end].^linearPowers[k - parameterLowerRange + 1, 9:end-1])*cos(powersAHCO[j, end]*(tau + 2*pi/3))
+                        end
+                        if linearPowers[k - parameterLowerRange + 1, 9] > 0
+                            newTerm += -linearPowers[k - parameterLowerRange + 1, 9]*xiTransformed[9]^(linearPowers[k - parameterLowerRange + 1, 9] - 1)*prod(xiTransformed[1:8].^linearPowers[k - parameterLowerRange + 1, 1:8])*prod(xiTransformed[10:end].^linearPowers[k - parameterLowerRange + 1, 10:end-1])*cos(powersAHCO[j, end]*(tau + 4*pi/3))
+                        end
+                    else
+                        if linearPowers[k - parameterLowerRange + 1, 7] > 0
+                            newTerm += -linearPowers[k - parameterLowerRange + 1, 7]*xiTransformed[7]^(linearPowers[k - parameterLowerRange + 1, 7] - 1)*prod(xiTransformed[1:6].^linearPowers[k - parameterLowerRange + 1, 1:6])*prod(xiTransformed[8:end].^linearPowers[k - parameterLowerRange + 1, 8:end-1])*sin(-powersAHCO[j, end]*tau)
+                        end
+                        if linearPowers[k - parameterLowerRange + 1, 8] > 0
+                            newTerm += -linearPowers[k - parameterLowerRange + 1, 8]*xiTransformed[8]^(linearPowers[k - parameterLowerRange + 1, 8] - 1)*prod(xiTransformed[1:7].^linearPowers[k - parameterLowerRange + 1, 1:7])*prod(xiTransformed[9:end].^linearPowers[k - parameterLowerRange + 1, 9:end-1])*sin(-powersAHCO[j, end]*(tau + 2*pi/3))
+                        end
+                        if linearPowers[k - parameterLowerRange + 1, 9] > 0
+                            newTerm += -linearPowers[k - parameterLowerRange + 1, 9]*xiTransformed[9]^(linearPowers[k - parameterLowerRange + 1, 9] - 1)*prod(xiTransformed[1:8].^linearPowers[k - parameterLowerRange + 1, 1:8])*prod(xiTransformed[10:end].^linearPowers[k - parameterLowerRange + 1, 10:end-1])*sin(-powersAHCO[j, end]*(tau + 4*pi/3))
+                        end
+                    end
+                    if linearPowers[k - parameterLowerRange + 1, end] >= 0
+                        newTerm *= cos(tau*linearPowers[k - parameterLowerRange + 1, end])
+                    else
+                        newTerm *= sin(-tau*linearPowers[k - parameterLowerRange + 1, end])
+                    end
+                    derivatives[j + numberOfParametersRCO + numberOfParametersROH + numberOfParametersRCH + numberOfParametersAHOC] += newTerm*parameters[k]
+                end
+            end
+        end
+        # Derivatives of morse parameters
+        # rCO
+        if allParametersOn[parameterLowerRange - 3] == 1
+            for k in parameterLowerRange:parameterUpperRange
+                newTerm::Float64 = 0
+                if linearPowers[k - parameterLowerRange + 1, 1] == 0
+                    continue
+                end
+                newTerm += linearPowers[k - parameterLowerRange + 1, 1]*exp(-morseParameters[1]*(internalCoordinatesTransformed[1] - obtainCoordinateMEP(tau, powersRCO, parametersRCO)))*(internalCoordinatesTransformed[1] - obtainCoordinateMEP(tau, powersRCO, parametersRCO))*xiTransformed[1]^(linearPowers[k - parameterLowerRange + 1, 1] - 1)*prod(xiTransformed[2:end].^linearPowers[k - parameterLowerRange + 1, 2:end-1])
+                if linearPowers[k - parameterLowerRange + 1, end] >= 0
+                    newTerm *= cos(tau*linearPowers[k - parameterLowerRange + 1, end])
+                else
+                    newTerm *= sin(-tau*linearPowers[k - parameterLowerRange + 1, end])
+                end
+                derivatives[parameterLowerRange - 3] += newTerm*parameters[k] 
+            end
+        end
+        # rOH
+        if allParametersOn[parameterLowerRange - 2] == 1
+            for k in parameterLowerRange:parameterUpperRange
+                newTerm::Float64 = 0
+                if linearPowers[k - parameterLowerRange + 1, 2] == 0
+                    continue
+                end
+                newTerm += linearPowers[k - parameterLowerRange + 1, 2]*exp(-morseParameters[2]*(internalCoordinatesTransformed[1] - obtainCoordinateMEP(tau, powersROH, parametersROH)))*(internalCoordinatesTransformed[1] - obtainCoordinateMEP(tau, powersRCO, parametersRCO))*xiTransformed[2]^(linearPowers[k - parameterLowerRange + 1, 2] - 1)*prod(xiTransformed[3:end].^linearPowers[k - parameterLowerRange + 1, 3:end-1])*xiTransformed[1]^linearPowers[k - parameterLowerRange + 1, 1]
+                if linearPowers[k - parameterLowerRange + 1, end] >= 0
+                    newTerm *= cos(tau*linearPowers[k - parameterLowerRange + 1, end])
+                else
+                    newTerm *= sin(-tau*linearPowers[k - parameterLowerRange + 1, end])
+                end
+                derivatives[parameterLowerRange - 2] += newTerm*parameters[k] 
+            end
+        end
+        # rCH
+        if allParametersOn[parameterLowerRange - 1] == 1
+            for k in parameterLowerRange:parameterUpperRange
+                newTerm::Float64 = 0
+                if linearPowers[k - parameterLowerRange + 1, 3] > 0
+                    newTerm += linearPowers[k - parameterLowerRange + 1, 3]*exp(-morseParameters[3]*(internalCoordinatesTransformed[3] - obtainCoordinateMEP(tau, powersRCH, parametersRCH)))*(internalCoordinatesTransformed[3] - obtainCoordinateMEP(tau, powersRCH, parametersRCH))*xiTransformed[3]^(linearPowers[k - parameterLowerRange + 1, 3] - 1)*prod(xiTransformed[1:2].^linearPowers[k - parameterLowerRange + 1, 1:2])*prod(xiTransformed[4:end].^linearPowers[k - parameterLowerRange + 1, 4:end-1])
+                end
+                if linearPowers[k - parameterLowerRange + 1, 4] > 0
+                    newTerm += linearPowers[k - parameterLowerRange + 1, 4]*exp(-morseParameters[3]*(internalCoordinatesTransformed[4] - obtainCoordinateMEP(tau, powersRCH, parametersRCH + 2*pi/3)))*(internalCoordinatesTransformed[4] - obtainCoordinateMEP(tau, powersRCH, parametersRCH + 2*pi/3))*xiTransformed[4]^(linearPowers[k - parameterLowerRange + 1, 4] - 1)*prod(xiTransformed[1:3].^linearPowers[k - parameterLowerRange + 1, 1:3])*prod(xiTransformed[5:end].^linearPowers[k - parameterLowerRange + 1, 5:end-1])
+                end
+                if linearPowers[k - parameterLowerRange + 1, 5] > 0
+                    newTerm += linearPowers[k - parameterLowerRange + 1, 5]*exp(-morseParameters[3]*(internalCoordinatesTransformed[5] - obtainCoordinateMEP(tau, powersRCH, parametersRCH + 4*pi/3)))*(internalCoordinatesTransformed[5] - obtainCoordinateMEP(tau, powersRCH, parametersRCH + 4*pi/3))*xiTransformed[5]^(linearPowers[k - parameterLowerRange + 1, 5] - 1)*prod(xiTransformed[1:4].^linearPowers[k - parameterLowerRange + 1, 1:4])*prod(xiTransformed[6:end].^linearPowers[k - parameterLowerRange + 1, 6:end-1])
+                end
+                if linearPowers[k - parameterLowerRange + 1, end] >= 0
+                    newTerm *= cos(tau*linearPowers[k - parameterLowerRange + 1, end])
+                else
+                    newTerm *= sin(-tau*linearPowers[k - parameterLowerRange + 1, end])
+                end
+                derivatives[parameterLowerRange - 1] += newTerm*parameters[k]
+            end
+        end
+        # Derivatives of linear parameters
         for j in parameterLowerRange:parameterUpperRange
-            if linearPowers[j - parameterLowerRange + 1, end] >= 0
-                potential += cos(linearPowers[j - parameterLowerRange + 1, end]*tau)*prod(xiTransformed.^linearPowers[j - parameterLowerRange + 1, 1:end-1])
-            else
-                potential += sin(linearPowers[j - parameterLowerRange + 1, end]*tau)*prod(xiTransformed.^linearPowers[j - parameterLowerRange + 1, 1:end-1])
+            if allParametersOn[j] == 1
+                if linearPowers[j - parameterLowerRange + 1, end] >= 0
+                    derivatives[j] += cos(linearPowers[j - parameterLowerRange + 1, end]*tau)*prod(xiTransformed.^linearPowers[j - parameterLowerRange + 1, 1:end-1])
+                else
+                    derivatives[j] += sin(-linearPowers[j - parameterLowerRange + 1, end]*tau)*prod(xiTransformed.^linearPowers[j - parameterLowerRange + 1, 1:end-1])
+                end
             end
         end
     end
-    potential /= 6
+    derivatives ./= 6
+end
+
+function computeJacobianOnGrid(gridInternalCoordinates::Matrix{Float64}, parameters::Vector{Float64})::Matrix{Float64}
+    numberOfGridPoints::Int64 = size(gridInternalCoordinates)[1]
+    numberOfParameters::Int64 = length(parameters)
+    jacobian::Matrix{Float64} = zeros(numberOfGridPoints, numberOfParameters)
+    for i in 1:numberOfGridPoints
+        jacobian[i, :] = computeJacobianAtPoint(gridInternalCoordinates[i, :], parameters)
+    end
+    return jacobian
 end
 
 # fittedPotentialEnergy = curve_fit(potentialEnergyFilterParams, gridInternalCoordinates[1:19, :], energies[1:19], weights[1:19], allParameters)
