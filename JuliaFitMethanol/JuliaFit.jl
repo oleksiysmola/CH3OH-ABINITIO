@@ -168,10 +168,10 @@ function potentialEnergy(internalCoordinates::Vector{Float64}, parameters::Vecto
     xi[5] = 1 - exp(-morseParameters[3]*(internalCoordinates[5] - rCH3eq))
 
     # Bending
-    xi[6] = (internalCoordinates[6] - aHOCeq)
-    xi[7] = (internalCoordinates[7] - aHCO1eq)
-    xi[8] = (internalCoordinates[8] - aHCO2eq)
-    xi[9] = (internalCoordinates[9] - aHCO3eq)
+    xi[6] = (internalCoordinates[6] - aHOCeq)*convertToRadians
+    xi[7] = (internalCoordinates[7] - aHCO1eq)*convertToRadians
+    xi[8] = (internalCoordinates[8] - aHCO2eq)*convertToRadians
+    xi[9] = (internalCoordinates[9] - aHCO3eq)*convertToRadians
 
     # Dihedrals
     xi[10] = internalCoordinates[10]
