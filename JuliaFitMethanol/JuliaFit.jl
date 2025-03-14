@@ -11,7 +11,8 @@ include("CH3OH.jl")
 
 
 # potentialInputFilePath::String = "inputCBS-C3V-Fit.inp"
-potentialInputFilePath::String = "inputCBS-C3V-rCO-1D.inp"
+inputFileName::String = "inputCBS-C3V-rCO-1D"
+potentialInputFilePath::String = inputFileName*".inp"
 
 keywords::Vector{String} = ["structural", "linear", "grid"]
 inputBlocks::Vector{Vector{String}} = []
@@ -216,29 +217,29 @@ function computeJacobianAtPoint(internalCoordinates::Vector{Float64}, parameters
     # Obtain MEP parameters for each stretch and bend
     parameterLowerRange::Int64 = 1
     parameterUpperRange::Int64 = numberOfParametersRCO
-    powersRCO::Matrix{Float64} = structuralPowers[1:parameterUpperRange, :]
+    powersRCO::Matrix{Int64} = structuralPowers[1:parameterUpperRange, :]
     parametersRCO::Vector{Float64} = parameters[1:parameterUpperRange]
     rCOeq::Float64 = obtainCoordinateMEP(internalCoordinates[end], structuralPowers[1:parameterUpperRange,:], parameters[1:parameterUpperRange])
     parameterUpperRange += numberOfParametersROH
     parameterLowerRange += numberOfParametersRCO
-    powersROH::Matrix{Float64} = structuralPowers[parameterLowerRange:parameterUpperRange,:]
+    powersROH::Matrix{Int64} = structuralPowers[parameterLowerRange:parameterUpperRange,:]
     parametersROH::Vector{Float64} = parameters[parameterLowerRange:parameterUpperRange]
     rOHeq::Float64 = obtainCoordinateMEP(internalCoordinates[end], structuralPowers[parameterLowerRange:parameterUpperRange,:], parameters[parameterLowerRange:parameterUpperRange])
     parameterUpperRange += numberOfParametersRCH
     parameterLowerRange += numberOfParametersROH
-    powersRCH::Matrix{Float64} = structuralPowers[parameterLowerRange:parameterUpperRange,:]
+    powersRCH::Matrix{Int64} = structuralPowers[parameterLowerRange:parameterUpperRange,:]
     parametersRCH::Vector{Float64} = parameters[parameterLowerRange:parameterUpperRange]
     rCH1eq::Float64 = obtainCoordinateMEP(internalCoordinates[end], structuralPowers[parameterLowerRange:parameterUpperRange,:], parameters[parameterLowerRange:parameterUpperRange])
     rCH2eq::Float64 = obtainCoordinateMEP(internalCoordinates[end] + 2*pi/3, structuralPowers[parameterLowerRange:parameterUpperRange,:], parameters[parameterLowerRange:parameterUpperRange])
     rCH3eq::Float64 = obtainCoordinateMEP(internalCoordinates[end] + 4*pi/3, structuralPowers[parameterLowerRange:parameterUpperRange,:], parameters[parameterLowerRange:parameterUpperRange])
     parameterUpperRange += numberOfParametersAHOC
     parameterLowerRange += numberOfParametersRCH
-    powersAHOC::Matrix{Float64} = structuralPowers[parameterLowerRange:parameterUpperRange,:]
+    powersAHOC::Matrix{Int64} = structuralPowers[parameterLowerRange:parameterUpperRange,:]
     parametersAHOC::Vector{Float64} = parameters[parameterLowerRange:parameterUpperRange]
     aHOCeq::Float64 = obtainCoordinateMEP(internalCoordinates[end], structuralPowers[parameterLowerRange:parameterUpperRange,:], parameters[parameterLowerRange:parameterUpperRange])
     parameterUpperRange += numberOfParametersAHCO
     parameterLowerRange += numberOfParametersAHOC
-    powersAHCO::Matrix{Float64} = structuralPowers[parameterLowerRange:parameterUpperRange,:]
+    powersAHCO::Matrix{Int64} = structuralPowers[parameterLowerRange:parameterUpperRange,:]
     parametersAHCO::Vector{Float64} = parameters[parameterLowerRange:parameterUpperRange]
     aHCO1eq::Float64 = obtainCoordinateMEP(internalCoordinates[end], structuralPowers[parameterLowerRange:parameterUpperRange,:], parameters[parameterLowerRange:parameterUpperRange])
     aHCO2eq::Float64 = obtainCoordinateMEP(internalCoordinates[end] + 2*pi/3, structuralPowers[parameterLowerRange:parameterUpperRange,:], parameters[parameterLowerRange:parameterUpperRange])
@@ -498,6 +499,17 @@ function computeJacobianOnGrid(gridInternalCoordinates::Matrix{Float64}, paramet
     return jacobian
 end
 
+@time fittedPotentialEnergy = curve_fit(potentialEnergyFilterParams, computeJacobianOnGrid, gridInternalCoordinates, energies, weights, allParameters)
+
+fittedParameters::Vector{Float64} = fittedPotentialEnergy.param
+computedEnergies::Vector{Float64} = potentialEnergyFilterParams(gridInternalCoordinates, fittedParameters)
+residuals::Vector{Float64} = energies .- computedEnergies
+
+open(inputFileName*".out", "w") do outputFile::IOStream
+    for i in 1:numberOfGridPoints
+        @printf(outputFile, "%12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f\n", grid[i, 1], grid[i, 2], grid[i, 3], grid[i, 4], grid[i, 5], grid[i, 6], grid[i, 7], grid[i, 8], grid[i, 9], grid[i, 10], grid[i, 11], grid[i, 12], energies[i], computedEnergies[i], residuals[i])
+    end
+end
 # fittedPotentialEnergy = curve_fit(potentialEnergyFilterParams, gridInternalCoordinates[1:19, :], energies[1:19], weights[1:19], allParameters)
 
 # Fit type: LsqFit.LsqFitResult{Vector{Float64}, Vector{Float64}, Matrix{Float64}, Vector{Float64}, Vector{LsqFit.LMState{LsqFit.LevenbergMarquardt}}}
