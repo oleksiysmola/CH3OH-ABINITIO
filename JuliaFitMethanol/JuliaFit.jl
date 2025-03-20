@@ -1,6 +1,11 @@
 using Printf
 using LsqFit
 using LinearAlgebra
+# using Distributed
+# using Base.Threads
+using Optim
+
+# addprocs(4)
 
 
 hartreeToWavenumberConversion::Float64 = 219474.63
@@ -77,8 +82,10 @@ for i in 1:numberOfLinearParameters
 end
 
 allParameters::Vector{Float64} = vcat(structuralParameters, linearParameters)
+allPowers::Matrix{Int64} = vcat(structuralPowers, linearPowers)
 allParametersOn::Vector{Int64} = vcat(structuralParametersOn, linearParametersOn)
-
+numberOfParameters::Int64 = length(allParameters)
+ 
 gridBlock::Vector{String} = inputBlocks[3][2:end]
 numberOfGridPoints::Int64 = size(gridBlock)[1] 
 gridBlockSplit::Vector{Vector{SubString{String}}} = split.(gridBlock, r"\s+")
@@ -200,14 +207,14 @@ function potentialEnergy(internalCoordinates::Vector{Float64}, parameters::Vecto
 end
 
 # Here we define a function which ensures parameters not currently in the fit are unchanged
-function potentialEnergyFilterParams(gridInternalCoordinates::Matrix{Float64}, parameters::Vector{Float64})::Vector{Float64}
+function potentialEnergyOfGrid(gridInternalCoordinates::Matrix{Float64}, parameters::Vector{Float64})::Vector{Float64}
     # parameters = [allParametersOn[i] == 1 ? parameters[i] : allParameters[i] for i in 1:length(allParametersOn)]
     numberOfPoints::Int64 = size(gridInternalCoordinates)[1]
     predictedEnergies::Vector{Float64} = zeros(numberOfPoints)
     for i in 1:numberOfPoints
         predictedEnergies[i] = potentialEnergy(gridInternalCoordinates[i, :], parameters)
     end
-    return predictedEnergies 
+    return predictedEnergies
 end
 
 function computeJacobianAtPoint(internalCoordinates::Vector{Float64}, parameters::Vector{Float64})::Vector{Float64}
@@ -499,13 +506,19 @@ function computeJacobianOnGrid(gridInternalCoordinates::Matrix{Float64}, paramet
     return jacobian
 end
 
-@time fittedPotentialEnergy = curve_fit(potentialEnergyFilterParams, computeJacobianOnGrid, gridInternalCoordinates, energies, weights, allParameters)
+@time fittedPotentialEnergy = curve_fit(potentialEnergyOfGrid, computeJacobianOnGrid, gridInternalCoordinates, energies, weights, allParameters)
 
 fittedParameters::Vector{Float64} = fittedPotentialEnergy.param
-computedEnergies::Vector{Float64} = potentialEnergyFilterParams(gridInternalCoordinates, fittedParameters)
+computedEnergies::Vector{Float64} = potentialEnergyOfGrid(gridInternalCoordinates, fittedParameters)
 residuals::Vector{Float64} = energies .- computedEnergies
 
 open(inputFileName*".out", "w") do outputFile::IOStream
+    println(outputFile, "New model:")
+    for i in 1:numberOfParameters
+        @printf(outputFile, "%12.0f %12.0f %12.0f %12.0f %12.0f %12.0f %12.0f %12.0f %12.0f %12.0f %12.0f %12.0f %12.8f\n", allPowers[i, 1], allPowers[i, 2], allPowers[i, 3], allPowers[i, 4], allPowers[i, 5], allPowers[i, 6], allPowers[i, 7], allPowers[i, 8], allPowers[i, 9], allPowers[i, 10], allPowers[i, 11], allPowers[i, 12], fittedParameters[i])
+    end
+    println(outputFile, )
+    println(outputFile, "Grid of energies:")
     for i in 1:numberOfGridPoints
         @printf(outputFile, "%12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f\n", grid[i, 1], grid[i, 2], grid[i, 3], grid[i, 4], grid[i, 5], grid[i, 6], grid[i, 7], grid[i, 8], grid[i, 9], grid[i, 10], grid[i, 11], grid[i, 12], energies[i], computedEnergies[i], residuals[i])
     end
