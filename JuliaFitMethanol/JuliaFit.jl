@@ -1,6 +1,8 @@
+using PyCall
 using Printf
 using LsqFit
 using LinearAlgebra
+using IMinuit
 # using Distributed
 # using Base.Threads
 using Optim
@@ -512,27 +514,38 @@ function computeJacobianOnGrid(gridInternalCoordinates::Matrix{Float64}, paramet
     return jacobian
 end
 
-@time res = optimize(allParameters -> lossGrid(allParameters, gridInternalCoordinates, energies, weights), allParameters, LBFGS()) 
-newParams = Optim.minimizer(res)
+function computeJacobianOnLossGrid(parameters::Vector{Float64}, gridInternalCoordinates::Matrix{Float64}, energies::Vector{Float64}, weights::Vector{Float64})::Matrix{Float64}
+    numberOfGridPoints::Int64 = size(gridInternalCoordinates)[1]
+    numberOfParameters::Int64 = length(parameters)
+    weightedResiduals::Vector{Float64} = 2*weights.*(energies .- lossGrid(allParameters, gridInternalCoordinates, energies, weights))
+    jacobian::Matrix{Float64} = zeros(numberOfGridPoints, numberOfParameters)
+    for i in 1:numberOfGridPoints
+        jacobian[i, :] = weightedResiduals[i]*computeJacobianAtPoint(gridInternalCoordinates[i, :], parameters)
+    end
+    return jacobian
+end
+
+# @time res = optimize(allParameters -> lossGrid(allParameters, gridInternalCoordinates, energies, weights), allParameters -> computeJacobianOnLossGrid(allParameters, gridInternalCoordinates, energies, weights), allParameters, BFGS()) 
+# newParams = Optim.minimizer(res)
 
 
-# @time fittedPotentialEnergy = curve_fit(potentialEnergyOfGrid, computeJacobianOnGrid, gridInternalCoordinates, energies, weights, allParameters)
+@time fittedPotentialEnergy = curve_fit(potentialEnergyOfGrid, computeJacobianOnGrid, gridInternalCoordinates, energies, weights, allParameters)
 
-# fittedParameters::Vector{Float64} = fittedPotentialEnergy.param
-# computedEnergies::Vector{Float64} = potentialEnergyOfGrid(gridInternalCoordinates, fittedParameters)
-# residuals::Vector{Float64} = energies .- computedEnergies
+fittedParameters::Vector{Float64} = fittedPotentialEnergy.param
+computedEnergies::Vector{Float64} = potentialEnergyOfGrid(gridInternalCoordinates, fittedParameters)
+residuals::Vector{Float64} = energies .- computedEnergies
 
-# open(inputFileName*".out", "w") do outputFile::IOStream
-#     println(outputFile, "New model:")
-#     for i in 1:numberOfParameters
-#         @printf(outputFile, "%4.0f %4.0f %4.0f %4.0f %4.0f %4.0f %4.0f %4.0f %4.0f %4.0f %4.0f %4.0f %12.8f\n", allPowers[i, 1], allPowers[i, 2], allPowers[i, 3], allPowers[i, 4], allPowers[i, 5], allPowers[i, 6], allPowers[i, 7], allPowers[i, 8], allPowers[i, 9], allPowers[i, 10], allPowers[i, 11], allPowers[i, 12], fittedParameters[i])
-#     end
-#     println(outputFile, )
-#     println(outputFile, "Grid of energies:")
-#     for i in 1:numberOfGridPoints
-#         @printf(outputFile, "%12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f\n", grid[i, 1], grid[i, 2], grid[i, 3], grid[i, 4], grid[i, 5], grid[i, 6], grid[i, 7], grid[i, 8], grid[i, 9], grid[i, 10], grid[i, 11], grid[i, 12], energies[i], computedEnergies[i], residuals[i])
-#     end
-# end
+open(inputFileName*".out", "w") do outputFile::IOStream
+    println(outputFile, "New model:")
+    for i in 1:numberOfParameters
+        @printf(outputFile, "%4.0f %4.0f %4.0f %4.0f %4.0f %4.0f %4.0f %4.0f %4.0f %4.0f %4.0f %4.0f %12.8f\n", allPowers[i, 1], allPowers[i, 2], allPowers[i, 3], allPowers[i, 4], allPowers[i, 5], allPowers[i, 6], allPowers[i, 7], allPowers[i, 8], allPowers[i, 9], allPowers[i, 10], allPowers[i, 11], allPowers[i, 12], fittedParameters[i])
+    end
+    println(outputFile, )
+    println(outputFile, "Grid of energies:")
+    for i in 1:numberOfGridPoints
+        @printf(outputFile, "%12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f %12.8f\n", grid[i, 1], grid[i, 2], grid[i, 3], grid[i, 4], grid[i, 5], grid[i, 6], grid[i, 7], grid[i, 8], grid[i, 9], grid[i, 10], grid[i, 11], grid[i, 12], energies[i], computedEnergies[i], residuals[i])
+    end
+end
 # fittedPotentialEnergy = curve_fit(potentialEnergyFilterParams, gridInternalCoordinates[1:19, :], energies[1:19], weights[1:19], allParameters)
 
 # Fit type: LsqFit.LsqFitResult{Vector{Float64}, Vector{Float64}, Matrix{Float64}, Vector{Float64}, Vector{LsqFit.LMState{LsqFit.LevenbergMarquardt}}}
