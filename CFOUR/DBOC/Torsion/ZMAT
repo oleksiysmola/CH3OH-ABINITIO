@@ -1,0 +1,24 @@
+Methanol DBOC calculation                                              
+C 
+O 1 rco 
+H 2 roh 1 acoh
+H 1 rch1 2 aoch1 3 ahh1
+H 1 rch2 2 aoch2 3 ahh2
+H 1 rch3 2 aoch3 3 ahh3                                                                   
+                                                                                
+rco=1.42077677                                                                  
+roh=0.96013932                                                                  
+rch1=1.08924348                                                                 
+rch2=1.08914348                                                                 
+rch3=1.08934348                                                                 
+acoh=108.12930637                                                               
+aoch1=110.16192385                                                              
+aoch2=110.10192385                                                              
+aoch3=110.12192385                                                              
+ahh1=107.14045208                                                               
+ahh2=156.42277396                                                               
+ahh3=276.42577396                                                                      
+                                                                                
+                                                                                
+*CFOUR(CALC=CCSD,BASIS=AUG-PCVTZ,SCF_CONV=9                                     
+CC_CONV=12,DBOC=ON,MEMORY=5000000000)   

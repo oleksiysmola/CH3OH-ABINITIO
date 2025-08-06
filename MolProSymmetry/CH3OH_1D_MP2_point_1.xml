@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<molpro xmlns="http://www.molpro.net/schema/molpro-output"
+  xmlns:xsd="http://www.w3.org/1999/XMLSchema"
+  xmlns:cml="http://www.xml-cml.org/schema"
+  xmlns:stm="http://www.xml-cml.org/schema"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+ <job>
+  <jobstep command="HF-SCF" commandset="SCFPRO">
+   <cml:molecule>
+    <cml:symmetry pointGroup="C1">
+    </cml:symmetry>
+    <cml:atomArray>
+     <cml:atom id="a1" elementType="C" x3="-0.866331969827947E-01" y3="0.580646722405044E-01"
+       z3="-0.490404217500335"/>
+     <cml:atom id="a2" elementType="O" x3="0.260134596681953E-01" y3="-0.820032597608872E-01"
+       z3="0.493309005532785"/>
+     <cml:atom id="a3" elementType="H" x3="-0.747158550172449E-01" y3="0.763734824305819"
+       z3="0.784136614817354"/>
+     <cml:atom id="a4" elementType="H" x3="0.260666352815668" y3="1.16708902897313"
+       z3="-0.78948280062453"/>
+     <cml:atom id="a5" elementType="H" x3="-0.259212830518601" y3="-0.800235313590555"
+       z3="-0.97366129650803"/>
+     <cml:atom id="a6" elementType="H" x3="0.692695614805444" y3="-0.520841753235189"
+       z3="-1.00762172847583"/>
+    </cml:atomArray>
+    <cml:bondArray>
+     <cml:bond atomRefs2="a1 a2"/>
+     <cml:bond atomRefs2="a1 a3"/>
+     <cml:bond atomRefs2="a2 a3"/>
+     <cml:bond atomRefs2="a1 a4"/>
+     <cml:bond atomRefs2="a1 a5"/>
+     <cml:bond atomRefs2="a1 a6"/>
+    </cml:bondArray>
+   </cml:molecule>
+   <property name="Energy" method="RHF" principal="true" stateSymmetry="1" stateNumber="1"
+     value="-114.670944690201"/>
+   <property name="One-electron energy" method="RHF" value="-254.701894342162"/>
+   <property name="Two-electron energy" method="RHF" value="89.7886678128694"/>
+   <property name="Kinetic energy" method="RHF" value="117.133958436172"/>
+   <property name="Nuclear energy" method="RHF" value="50.2422818390923"/>
+   <property name="Virial quotient" method="RHF" value="-0.978972675568604"/>
+   <property name="Dipole moment" method="RHF" principal="true" stateSymmetry="1"
+     stateNumber="1"
+     value="0.360819347852872E-01 0.495113868799987 0.433718619030921"/>
+   <time start="14:17:50" end="14:19:34" cpu="487.24" system="9.85" real="104.59"/>
+   <storage units="megabyte" memory="0.0" sf="0.0" df="2567.16" eaf="0.0"/>
+   <summary overall_method="HF/cc-pVTZ-F12"/>
+  </jobstep>
+  <jobstep command="MP2-F12" commandset="CCSD">
+   <property name="energy" method="Reference" stateSymmetry="1" stateNumber="1"
+     value="-114.670944690201"/>
+   <property name="" method="F12 singles correction" stateSymmetry="1" stateNumber="1"
+     value="-0.195818201343611E-02"/>
+   <property name="energy" method="New reference" stateSymmetry="1" stateNumber="1"
+     value="-114.672902872214"/>
+   <property name="singlet correction" method="F12/3C(F)" stateSymmetry="1" stateNumber="1"
+     value="-0.375457621240107E-01"/>
+   <property name="triplet correction" method="F12/3C(F)" stateSymmetry="1" stateNumber="1"
+     value="-0.48403027173107E-02"/>
+   <property name="total correction" method="F12/3C(F)" stateSymmetry="1" stateNumber="1"
+     value="-0.423860648413214E-01"/>
+   <property name="singlet pair energy" method="MP2-F12/3C(F)" stateSymmetry="1"
+     stateNumber="1" value="-0.324456738790628"/>
+   <property name="triplet pair energy" method="MP2-F12/3C(F)" stateSymmetry="1"
+     stateNumber="1" value="-0.165741620436285"/>
+   <property name="correlation energy" method="MP2-F12/3C(F)" stateSymmetry="1"
+     stateNumber="1" value="-0.490198359226914"/>
+   <property name="total energy" method="MP2-F12/3C(F)" principal="true" stateSymmetry="1"
+     stateNumber="1" value="-115.163101231441"/>
+   <time start="14:19:34" end="14:19:50" cpu="63.69" system="0.7" real="16.25"/>
+   <storage units="megabyte" memory="0.0" sf="0.0" df="2567.16" eaf="0.0"/>
+   <summary overall_method="MP2-F12/cc-pVTZ-F12"/>
+  </jobstep>
+<table xmlns="http://www.w3.org/1999/xhtml" id="table1">
+<thead><tr><th>XXX</th><th>RCO</th><th>ROH</th><th>RCH1</th><th>RCH2</th><th>RCH3</th><th>ACOH</th><th>AOCH1</th><th>AOCH2</th><th>AOCH3</th><th>AHH1</th><th>AHH2</th><th>AHH3</th><th>ENERGY</th><th>POINT</th></tr></thead><tbody>
+<tr><td>"MMM"</td><td>   1.00000000</td><td>   0.90000000</td><td>   1.20000000</td><td>   1.00000000</td><td>   1.10000000</td><td>   100.00000000</td><td>   110.00000000</td><td>   112.00000000</td><td>   108.00000000</td><td>   28.28427125</td><td>   195.85786438</td><td>   135.85786438</td><td>   -115.16310123</td><td>   1.0000</td></tr>
+</tbody></table>
+  <stm:metadataList>
+   <stm:metadata name="dc:date" content="2025-08-04T14:19:50+01:00"/>
+   <stm:metadata name="dc:creator" content="asmola"/>
+   <stm:metadata name="dc:title"
+     content="Methanol Ground State Energy with CCSD(T)-F12 and cc-pVQZ-F12"/>
+   <stm:metadata name="cmlm:insilico" content="Molpro"/>
+  </stm:metadataList>
+  <platform>
+   <version major="2022" minor="1" SHA="31073afc4d8441e10870424e0d77336a33bc4286"
+     integer_bits="64" parallelism="serial">
+    2022.1
+    <date year="2025" month="8" day="4" hour="14" minute="17" second="50">
+     2025-08-04T14:17:50
+    </date>
+   </version>
+   <licence id="uclcc"/>
+   <parallel processes="1" nodes="1" all_processes="1" openmp="8"/>
+   <dimensions natom="400" nvalence="500" nvalence_pno="1000" nbasis="12000" nstate="100"
+     nsymm="16" nrec="512" nprim="2" ncol="100"/>
+  </platform>
+  <input>
+   <p>***,Methanol Ground State Energy with CCSD(T)-F12 and cc-pVQZ-F12</p>
+   <p>memory,500,m;</p>
+   <p>gthresh,energy=1.d-10,zero=1.d-14,thrint=1.d-14,oneint=1.d-14,twoint=1.d-14,prefac=1.d-20</p>
+   <p>geometry={angstrom</p>
+   <p>c</p>
+   <p>o , 1, rco</p>
+   <p>h , 2, roh, 1, acoh</p>
+   <p>h1, 1, rch1, 2, aoch1  3  ahh1</p>
+   <p>h2, 1, rch2, 2, aoch2, 3, ahh2</p>
+   <p>h3, 1, rch3, 2, aoch3, 3, ahh3</p>
+   <p>}</p>
+   <p>! Specify the initial values of the internal coordinates (in Angstroms and degrees)</p>
+   <p>rco= 1.0</p>
+   <p>roh= 0.9</p>
+   <p>rch1= 1.2</p>
+   <p>rch2= 1.0</p>
+   <p>rch3= 1.1</p>
+   <p>acoh= 100.0</p>
+   <p>aoch1= 110.0</p>
+   <p>aoch2= 112.0</p>
+   <p>aoch3= 108.0</p>
+   <p>ahh1=28.2842712474619</p>
+   <p>ahh2=195.85786437626905</p>
+   <p>ahh3=135.85786437626905</p>
+   <p>! Use the cc-pVTZ-F12 basis set</p>
+   <p>basis=cc-pVTZ-F12</p>
+   <p>hf</p>
+   <p>! Use explicitly correlated F12 methods</p>
+   <p>! First, MP2-F12 (useful for initial electronic energy)</p>
+   <p>{mp2-f12}</p>
+   <p>! Output the energy</p>
+   <p>xxx = "mmm"</p>
+   <p>point = 1</p>
+   <p>text ### CH3OH</p>
+   <p>table,xxx,rco,roh,rch1,rch2,rch3,acoh,aoch1,aoch2,aoch3,ahh1,ahh2,ahh3,energy,point</p>
+   <p>DIGITS, 0, 8, 8, 8, 8, 8, 8, 8, 8, 8,  8,  8,  8, 8, 4</p>
+   <p>save,CH3OH_MEP_MP2_1.dat,new</p>
+  </input>
+  <diagnostics warnings="0"/>
+ </job>
+</molpro>

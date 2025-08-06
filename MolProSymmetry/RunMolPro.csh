@@ -7,7 +7,7 @@ set pwd = `pwd`
 
 set point = $1        
 set directory = /scratch/scratch/zcaposm/Methanol/MOLPRO/VQZ/1D/CH3OH_1D_MEP_AdaptiveGrid
-set fname = CH3OH_1D_MEP_point_${point}
+set fname = CH3OH_1D_MP2_point_${point}
 
 cat<<endb> ${fname}.inp
 ***, Methanol Ground State Energy with CCSD(T)-F12 and cc-pVQZ-F12
@@ -38,17 +38,14 @@ ahh1=$11
 ahh2=$12
 ahh3=$13
 
-! Use the cc-pVQZ-F12 basis set
-basis=cc-pVQZ-F12
+! Use the cc-pVTZ-F12 basis set
+basis=cc-pVTZ-F12
 
 hf
 
 ! Use explicitly correlated F12 methods
 ! First, MP2-F12 (useful for initial electronic energy)
 {mp2-f12}
-
-! If desired, perform CCSD(T)-F12 for more accurate results
-{ccsd(t)-f12}
 
 ! Output the energy
 xxx = "mmm"

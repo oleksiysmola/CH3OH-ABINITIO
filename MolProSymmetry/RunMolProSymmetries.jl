@@ -5,7 +5,7 @@ function defineSymmetryOperations(case="C3v(M)"::String)::Array{Float64}
     if case == "C3v(M)"
         symmetryOperations::Array{Float64} = zeros(Int64, 6, 11, 11)
         symmetryOperations[1, :, :] = Matrix(1I, 11, 11)
-        # (123)
+        # (132)
         symmetryOperations[2, :, :] = [
             1 0 0 0 0 0 0 0 0 0 0;
             0 1 0 0 0 0 0 0 0 0 0;
@@ -19,7 +19,7 @@ function defineSymmetryOperations(case="C3v(M)"::String)::Array{Float64}
             0 0 0 0 0 0 0 0 0 -1/2 sqrt(3)/2;
             0 0 0 0 0 0 0 0 0 -sqrt(3)/2 -1/2;            
             ]
-        # (132)
+        # (123)
         symmetryOperations[3, :, :] = [
             1 0 0 0 0 0 0 0 0 0 0;
             0 1 0 0 0 0 0 0 0 0 0;
@@ -85,11 +85,11 @@ function applySymmetryOperations(symmetryOperations::Array{Float64}, grid::Vecto
     for i in 1:6
         grids[i, 1:end-1] = symmetryOperations[i, :, :]*grid[1:end-1]
     end
-    grids[2, 12] = grids[2, 12] + 2*pi*convertToDegrees/3
-    grids[3, 12] = grids[3, 12] - 2*pi*convertToDegrees/3
-    grids[4, 12] = -grids[4, 12] - 2*pi*convertToDegrees/3
-    grids[5, 12] = -grids[5, 12]
-    grids[6, 12] = -grids[6, 12] + 2*pi*convertToDegrees/3
+    grids[2, 12] = grids[2, 12] + 2*pi*convertToDegrees/3 # (132)
+    grids[3, 12] = grids[3, 12] - 2*pi*convertToDegrees/3 # (123)
+    grids[4, 12] = -grids[4, 12] - 2*pi*convertToDegrees/3 # (12)*
+    grids[5, 12] = -grids[5, 12] # (23)*
+    grids[6, 12] = -grids[6, 12] + 2*pi*convertToDegrees/3 # (13)*
     return grids
 end
 
