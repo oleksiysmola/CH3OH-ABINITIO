@@ -1573,17 +1573,17 @@ do nrow=1,npts
   xi(2)=1.0d+00-exp(-a2*(rOH-rOHe))
   !CH3
   xi(3)=1.0d+00-exp(-b1*(rH1-rH1e))
-  xi(5)=1.0d+00-exp(-b1*(rH2-rH1e))
-  xi(4)=1.0d+00-exp(-b1*(rH3-rH1e))
+  xi(4)=1.0d+00-exp(-b1*(rH2-rH1e))
+  xi(5)=1.0d+00-exp(-b1*(rH3-rH1e))
   !
   !OCH
   xi(6) = (local(6))- (alpha_COHe)
   !
   ! alphas
   !H2-C-H3,H1-C-H2,H1-C-H3
-  xi(7) = local(7)- alpha_OCHe
-  xi(8) = local(9)- alpha_OCHe
-  xi(9) = local(8)- alpha_OCHe
+  xi(7) = local(7) - alpha_OCHe
+  xi(8) = local(9) - alpha_OCHe
+  xi(9) = local(8) - alpha_OCHe
   !
   theta1 = local(10)
   theta1 = mod(theta1+2.0d0*pi,2.0d0*pi)
@@ -1645,6 +1645,8 @@ do nrow=1,npts
     dV(iparam) = term/6.0d0
     !
   enddo
+
+  ! write(*, '(A, F20.10, F20.10, F20.10, F20.10, F20.10, F20.10)') "point ", local(10), local(12), local(11), xi(10)/deg, xi(11)/deg, xi(12)/deg
   !
 end subroutine diff_V_tau
 
@@ -2041,7 +2043,7 @@ end subroutine diff_V_tau
     repres(1,10,10) = 1.0_ark
     repres(1,11,11) = 1.0_ark
     !
-    !C3+/(132)
+    !C3+/(123)
     repres(2,3,5) = 1.0_ark
     repres(2,4,3) = 1.0_ark
     repres(2,5,4) = 1.0_ark
@@ -2055,7 +2057,7 @@ end subroutine diff_V_tau
     repres(2,11,10) =  b
     repres(2,11,11) = -a
     !
-    !C3-/(93)
+    !C3-/(132)
     !
     repres(3,3,4) = 1.0_ark
     repres(3,4,5) = 1.0_ark
@@ -2083,7 +2085,7 @@ end subroutine diff_V_tau
     repres(4,10,10) =  1.0_ark
     repres(4,11,11) = -1.0_ark
     !
-    !C2'/(9)->(34)
+    !C2'/(9)->(12)*
     repres(6,3,4) = 1.0_ark
     repres(6,4,3) = 1.0_ark
     repres(6,5,5) = 1.0_ark

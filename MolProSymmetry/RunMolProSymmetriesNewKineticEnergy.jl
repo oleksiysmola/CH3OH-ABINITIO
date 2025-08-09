@@ -108,8 +108,8 @@ for i in 1:6
     molproGrid[1:9] = grids[i, 1:9]
     grids[i, 10:11] = grids[i, 10:11]*convertToDegrees
     molproGrid[10] = grids[i, 12]-1.0/3.0*sqrt(2.0)*grids[i, 11]
-    molproGrid[12] = 120.0+grids[i, 12]+1.0/6.0*sqrt(2.0)*grids[i, 11]-1.0/6.0*sqrt(6.0)*grids[i, 10]
     molproGrid[11] = 240.0+grids[i, 12]+1.0/6.0*sqrt(2.0)*grids[i, 11]+1.0/6.0*sqrt(6.0)*grids[i, 10]
+    molproGrid[12] = 120.0+grids[i, 12]+1.0/6.0*sqrt(2.0)*grids[i, 11]-1.0/6.0*sqrt(6.0)*grids[i, 10]
     # molproGrid[10] = 120.0+grids[i, 12]+sqrt(2/3)*grids[i, 10]
     # molproGrid[11] = 120.0+grids[i, 12]-sqrt(1/6)*grids[i, 10]+sqrt(1/2)*grids[i, 11]
     # molproGrid[12] = 120.0+grids[i, 12]-sqrt(1/6)*grids[i, 10]-sqrt(1/2)*grids[i, 11]
