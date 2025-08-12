@@ -7,7 +7,7 @@ checkin:
 	ci -l Makefile *.f90
 
 
-CODE = CH3OH_v10_theta12_14_23-KinSwap
+CODE = CH3OH_v10_theta12_14_23-KinSwap-12-08
 
 EXE = j-$(CODE).x
 
