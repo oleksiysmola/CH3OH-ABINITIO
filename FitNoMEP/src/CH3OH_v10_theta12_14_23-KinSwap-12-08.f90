@@ -1550,8 +1550,8 @@ do nrow=1,npts
   rCO      = local(1)
   rOH      = local(2)
   rH1      = local(3)
-  rH2      = local(5)
-  rH3      = local(4)
+  rH2      = local(4)
+  rH3      = local(5)
   !
   rCOe      = param(1)
   rOHe      = param(2)
@@ -1582,8 +1582,8 @@ do nrow=1,npts
   ! alphas
   !H2-C-H3,H1-C-H2,H1-C-H3
   xi(7) = local(7) - alpha_OCHe
-  xi(8) = local(9) - alpha_OCHe
-  xi(9) = local(8) - alpha_OCHe
+  xi(8) = local(8) - alpha_OCHe
+  xi(9) = local(9) - alpha_OCHe
   !
   theta1 = local(10)
   theta1 = mod(theta1+2.0d0*pi,2.0d0*pi)
@@ -1591,12 +1591,12 @@ do nrow=1,npts
   ! subtract equilbrium theta values to make a1/a2 zero at equilibrium
   ! and ensure consistent transfroms
   !
-  theta2 = local(12)
-  theta3 = local(11)
+  theta2 = local(11)
+  theta3 = local(12)
   !
   ! Swap dihedrals as in kinetic energy operator
-  theta12 = mod(theta1-theta2+2.0d0*pi,2.0d0*pi) ! 1 and 2 swapped
-  theta23 = mod(theta2-theta3+2.0d0*pi,2.0d0*pi) ! 
+  theta12 = mod(theta2-theta1+2.0d0*pi,2.0d0*pi) ! 1 and 2 swapped
+  theta23 = mod(theta3-theta2+2.0d0*pi,2.0d0*pi) ! 
   !theta13 = mod(theta1-theta3+2.0d0*pi,2.0d0*pi)
   theta13 = mod(2.0_ark*pi-theta12-theta23+2.0_ark*pi,2.0_ark*pi)
   !
