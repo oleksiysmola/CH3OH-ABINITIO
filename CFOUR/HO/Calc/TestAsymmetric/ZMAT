@@ -20,5 +20,5 @@ ahh2=156.42277396
 ahh3=276.42577396                                                         
                                                                                 
                                                                                 
-*CFOUR(CALC=CCSDT,BASIS=PVTZ,SCF_CONV=9,SCF_MAXCYC=2000                                     
-CC_CONV=9,FROZEN_CORE=ON,MEMORY=5000000000)   
+*CFOUR(CALC=CCSDT,BASIS=PVTZ,SCF_CONV=10,SCF_MAXCYC=2000                                     
+CC_CONV=10,FROZEN_CORE=ON,MEMORY=5000000000)   
