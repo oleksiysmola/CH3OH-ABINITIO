@@ -3102,7 +3102,7 @@ numberOfCoefficients = Length[potentialParameters]
 
 potentialParametersByOrder = GroupBy[potentialParameters, Total[Most@Rest[#]] &];
 
-maxOrder = 2;
+maxOrder = 6;
 potentialTerms = ConstantArray[{}, maxOrder + 1];
 termsToRemove = ConstantArray[{}, maxOrder + 1];
 For[i = 1, i <= maxOrder + 1, i++,
@@ -3132,14 +3132,20 @@ For[i = 1, i <= maxOrder + 1, i++,
 		];
 	];
 	(* potentialTerms[[i]] = Flatten[potentialTerms[[i]]] *)
+    Print["\n Order " <> ToString[i - 1] <> ":\n"];
+    For[j = 1, j <= numberOfCoefficientsInOrder, j++,
+      If[termsToRemove[[i]][[j]] == False,
+        Print["GREP  " <> ToString[potentialParametersByOrder[[i]][[j]][[1]]] <> "  " <> ToString[potentialParametersByOrder[[i]][[j]][[2]]] <> " " <> ToString[potentialParametersByOrder[[i]][[j]][[3]]] <> " " <> ToString[potentialParametersByOrder[[i]][[j]][[4]]]  <> " " <> ToString[potentialParametersByOrder[[i]][[j]][[5]]]  <> " " <> ToString[potentialParametersByOrder[[i]][[j]][[6]]]  <> " " <> ToString[potentialParametersByOrder[[i]][[j]][[7]]]  <> " " <> ToString[potentialParametersByOrder[[i]][[j]][[8]]]  <> " " <> ToString[potentialParametersByOrder[[i]][[j]][[9]]]  <> "  " <> ToString[potentialParametersByOrder[[i]][[j]][[10]]]];
+      ];
+    ];
 ];
 
-For[i = 1, i <= maxOrder + 1, i++,
+(* For[i = 1, i <= maxOrder + 1, i++,
   numberOfCoefficientsInOrder = Length[potentialParametersByOrder[[i]]];
   Print["\n Order " <> ToString[i - 1] <> ":\n"];
   For[j = 1, j <= numberOfCoefficientsInOrder, j++,
     If[termsToRemove[[i]][[j]] == False,
-      Print["\n" <>ToString[potentialParametersByOrder[[i]][[j]]]];
+      Print[ToString[potentialParametersByOrder[[i]][[j]]]];
     ];
   ];
-]
+] *)
