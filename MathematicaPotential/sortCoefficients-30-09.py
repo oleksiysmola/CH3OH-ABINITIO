@@ -41,8 +41,11 @@ def multiModeSort(row, rank=3):
     return row
 
 def convertTorsion(row):
+    row["keep"] = True
     if row["fourierType"] == "h":
         row["v12"] = -row["v12"]
+        if row["v12"] == 0:
+            row["keep"] = False
     return row
 
 df = df.parallel_apply(lambda x: multiModeSort(x), axis=1, result_type="expand")
@@ -52,6 +55,8 @@ print("\n")
 print(df.head(20).to_string(header=False, index=False))
 df = df.drop(["multiMode"], axis=1)
 df = df.parallel_apply(lambda x: convertTorsion(x), axis=1, result_type="expand")
+df = df[df["keep"] == True]
+df = df.drop(["keep"], axis=1)
 df = df.to_string(index=False, header=False)
 statesFile = "CollectedCoefficients-MultiMode3.dat"
 with open(statesFile, "w+") as FileToWriteTo:
